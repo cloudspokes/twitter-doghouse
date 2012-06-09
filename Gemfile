@@ -7,6 +7,7 @@ gem 'rails', '3.2.5'
 
 gem 'sqlite3'
 gem 'pg'
+gem "thin", "~> 1.3.1"
 gem "omniauth-twitter", "~> 0.0.11"
 
 
