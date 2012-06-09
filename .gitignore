@@ -14,9 +14,6 @@
 /log/*.log
 /tmp
 
-# Ignore vendor logos
-/public/system/*
-
 # Ignore RVM default
 /.rvmrc
 
