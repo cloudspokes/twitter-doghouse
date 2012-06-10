@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'pg'
 gem "thin", "~> 1.3.1"
 gem "omniauth-twitter", "~> 0.0.11"
+gem "twitter", "~> 2.5.0"
 
 
 # Gems used only for assets and not required

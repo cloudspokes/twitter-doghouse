@@ -1,6 +1,15 @@
 <% if current_user %>
   Welcome <%= current_user.name %>!
   <%= link_to "Sign Out", signout_path %>
+  <% cursor = -1 %>
+  <% while cursor != 0 %>
+    <% followings = Twitter.friend_ids(current_user.nickname, cursor: cursor) %>
+    <% followings.ids.each do |fid| %>
+      <p><%= fid %></p>
+    <% end %>
+    <% cursor = followings.next_cursor %>
+  <% end %>
+  <p><%= Twitter.user_timeline(current_user.nickname).first.text %></p>
 <% else %>
   <%= link_to "Sign in with Twitter", "/auth/twitter" %>
 <% end %>
