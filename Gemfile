@@ -10,7 +10,8 @@ gem 'pg'
 gem "thin", "~> 1.3.1"
 gem "omniauth-twitter", "~> 0.0.11"
 gem "twitter", "~> 2.5.0"
-
+gem "simple_form", "~> 2.0.2"
+gem "select2-rails", "~> 0.0.4"
 
 # Gems used only for assets and not required
 # in production environments by default.

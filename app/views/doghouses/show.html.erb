@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @doghouse.user_id %>
+</p>
+
+<p>
+  <b>Screen name:</b>
+  <%= @doghouse.screen_name %>
+</p>
+
+<p>
+  <b>Created At:</b>
+  <%= content_tag :span, @doghouse.created_at.to_time.to_i, class: 'utc-date-time' %>
+</p>
+
+<p>
+  <b>Release date time:</b>
+  <%= content_tag :span, @doghouse.release_date_time.to_time.to_i, class: 'utc-date-time' %>
+</p>
+
+<p>
+  <b>Is released:</b>
+  <%= @doghouse.is_released %>
+</p>
+
+
+<%= link_to 'Edit', edit_doghouse_path(@doghouse) %> |
+<%= link_to 'Back', doghouses_path %>

@@ -9,3 +9,5 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require application_custom
+//= require select2
+//= require date

@@ -13,6 +13,7 @@
     <%= content_tag :meta, nil, name: 'viewport', content: 'width=device-width, initial-scale=1.0' %>
   <% end %>
   <%= content_tag :body do %>
+    <%= render 'layouts/navbar' %>  
     <%= content_tag :div, class: 'container' do %>
       <% flash.each do |name, msg| %>
         <% unless msg.blank? %>

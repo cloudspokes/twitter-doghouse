@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   MAX_QUERY_LENGTH = 100
   
+  has_many :doghouses, dependent: :destroy, order: 'created_at desc'
+  
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]
@@ -21,6 +23,15 @@ class User < ActiveRecord::Base
       index += MAX_QUERY_LENGTH
     end
     users.flatten
+  end
+  
+  def twitter_api_authenticate!
+    Twitter.configure do |config|
+      config.consumer_key = TWITTER_KEY
+      config.consumer_secret = TWITTER_SECRET
+      config.oauth_token = token
+      config.oauth_token_secret = secret
+    end
   end
   
   private

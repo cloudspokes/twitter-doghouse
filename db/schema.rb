@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120610040042) do
+ActiveRecord::Schema.define(:version => 20120611004627) do
+
+  create_table "doghouses", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "screen_name"
+    t.boolean  "is_released"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.datetime "release_date_time"
+  end
+
+  add_index "doghouses", ["user_id"], :name => "index_doghouses_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "provider"

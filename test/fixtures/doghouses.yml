@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  screen_name: MyString
+  release_date_time: 2012-06-10 20:46:27
+  is_released: false
+
+two:
+  user_id: 1
+  screen_name: MyString
+  release_date_time: 2012-06-10 20:46:27
+  is_released: false

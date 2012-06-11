@@ -1,8 +1,8 @@
 TwitterDoghouse::Application.routes.draw do
   
-  root :to => "home#index"
+  resources :doghouses
+  root :to => "doghouses#index"
 
-  match "/unfollow" => "twitter_actions#unfollow", as: :unfollow
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", as: :signout
   # The priority is based upon order of creation:
