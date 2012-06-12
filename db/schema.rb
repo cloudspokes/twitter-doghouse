@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612131604) do
+ActiveRecord::Schema.define(:version => 20120612223315) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20120612131604) do
     t.datetime "updated_at",       :null => false
     t.integer  "duration_minutes"
     t.integer  "job_id"
+    t.string   "enter_tweet"
+    t.string   "exit_tweet"
   end
 
   add_index "doghouses", ["user_id"], :name => "index_doghouses_on_user_id"
