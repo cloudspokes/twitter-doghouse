@@ -13,6 +13,7 @@ gem "twitter", "~> 2.5.0"
 gem "simple_form", "~> 2.0.2"
 gem "select2-rails", "~> 0.0.4"
 gem "delayed_job_active_record", "~> 0.3.2"
+gem "hirefireapp", "~> 0.0.8"
 
 group :development do
   gem 'sqlite3'
