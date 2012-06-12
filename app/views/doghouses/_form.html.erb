@@ -1,5 +1,7 @@
 <%= simple_form_for(@doghouse, html: {class: 'form-horizontal'}) do |f| %>
   <%= f.input :screen_name, collection: following_users_collection, allow_blank: false if f.object.new_record? %>
   <%= f.input :duration_minutes, label: 'How Long?', hint: 'in minutes' %>
+  <%= f.input :enter_tweet, hint: '' %>
+  <%= f.input :exit_tweet, hint: '' %>
   <%= f.button :submit %>
 <% end %>

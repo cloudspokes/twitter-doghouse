@@ -4,10 +4,9 @@ class Doghouse < ActiveRecord::Base
   validates :screen_name, presence: true
   validates :duration_minutes, numericality: {greater_than: 0 }
   
-  attr_accessible :screen_name, :duration_minutes
+  attr_accessible :screen_name, :duration_minutes, :enter_tweet, :exit_tweet
   
-  after_create :unfollow!
-  after_create :create_release_job
+  after_create :enter_doghouse_actions
   after_save :update_job, on: :update, unless: :is_released
   after_destroy :remove_job, unless: :is_released
   
@@ -16,22 +15,40 @@ class Doghouse < ActiveRecord::Base
   end
   
   private
+  
+    def enter_doghouse_actions
+      user.twitter_api_authenticate!
+      unfollow!
+      create_release_job!
+      Doghouse.delay.send_enter_tweet!(id)
+    end
     
     def unfollow!
-      user.twitter_api_authenticate!
       Twitter.unfollow(screen_name)
       cache_key = "following_users_#{user.id}"
       Rails.cache.write(cache_key, Rails.cache.read(cache_key).reject{|f| f.screen_name == screen_name}) if Rails.cache.read(cache_key)
     end
     
-    def create_release_job
+    def create_release_job!
       update_attribute(:job_id, Doghouse.delay(run_at: duration_minutes.minutes.from_now).release!(id).id)
     end
     
+    def self.send_enter_tweet!(doghouse_id)
+      doghouse = Doghouse.get_doghouse_and_authenticate doghouse_id
+      enter_tweet = doghouse.enter_tweet
+      Twitter.update(enter_tweet) if enter_tweet.present? and enter_tweet.length <= MAX_TWEET_CHARS
+    end
+    
+    def self.send_exit_tweet!(doghouse_id)
+      doghouse = Doghouse.get_doghouse_and_authenticate doghouse_id
+      exit_tweet = doghouse.exit_tweet
+      Twitter.update(exit_tweet) if exit_tweet.present? and exit_tweet.length <= MAX_TWEET_CHARS
+    end
+    
     def self.release!(doghouse_id)
-      doghouse = Doghouse.find(doghouse_id)
-      doghouse.user.twitter_api_authenticate!
+      doghouse = Doghouse.get_doghouse_and_authenticate doghouse_id
       Twitter.follow(doghouse.screen_name)
+      Doghouse.delay.send_exit_tweet!(doghouse.id)
       doghouse.update_attribute(:is_released, true)
       Rails.cache.delete "following_users_#{doghouse.user.id}"
     end
@@ -42,5 +59,11 @@ class Doghouse < ActiveRecord::Base
     
     def remove_job
       Delayed::Backend::ActiveRecord::Job.find(job_id).destroy
+    end
+    
+    def self.get_doghouse_and_authenticate(doghouse_id)
+      doghouse = Doghouse.find(doghouse_id)
+      doghouse.user.twitter_api_authenticate!
+      doghouse
     end
 end
