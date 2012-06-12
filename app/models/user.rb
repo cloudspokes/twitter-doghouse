@@ -15,14 +15,16 @@ class User < ActiveRecord::Base
   end
   
   def get_following_users
-    following_ids = get_following_ids
-    users = []
-    index = 0
-    while index < following_ids.length
-      users << Twitter.users(following_ids[index...(index+MAX_QUERY_LENGTH)])
-      index += MAX_QUERY_LENGTH
+    Rails.cache.fetch("following_users_#{id}", expires_in: 5.minutes) do
+      following_ids = get_following_ids
+      users = []
+      index = 0
+      while index < following_ids.length
+        users << Twitter.users(following_ids[index...(index+MAX_QUERY_LENGTH)])
+        index += MAX_QUERY_LENGTH
+      end
+      users.flatten
     end
-    users.flatten
   end
   
   def twitter_api_authenticate!

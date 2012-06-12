@@ -18,6 +18,8 @@ class Doghouse < ActiveRecord::Base
     def unfollow!
       user.twitter_api_authenticate!
       Twitter.unfollow(screen_name)
+      cache_key = "following_users_#{user.id}"
+      Rails.cache.write(cache_key, Rails.cache.read(cache_key).reject{|f| f.screen_name == screen_name}) if Rails.cache.read(cache_key)
     end
     
     def create_release_job
