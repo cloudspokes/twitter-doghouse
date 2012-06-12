@@ -29,10 +29,10 @@ class Doghouse < ActiveRecord::Base
     end
     
     def self.release!(doghouse_id)
-      dogouse = Doghouse.find(doghouse_id)
-      dogouse.user.twitter_api_authenticate!
-      Twitter.follow(dogouse.screen_name)
-      dogouse.update_attribute(:is_released, true)
+      doghouse = Doghouse.find(doghouse_id)
+      doghouse.user.twitter_api_authenticate!
+      Twitter.follow(doghouse.screen_name)
+      doghouse.update_attribute(:is_released, true)
       Rails.cache.delete "following_users_#{doghouse.user.id}"
     end
     
