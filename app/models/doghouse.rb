@@ -8,6 +8,8 @@ class Doghouse < ActiveRecord::Base
   
   after_create :unfollow!
   after_create :create_release_job
+  after_save :update_job, on: :update, unless: :is_released
+  after_destroy :remove_job, unless: :is_released
   
   def release_date_time
     created_at + duration_minutes.minutes
@@ -23,7 +25,7 @@ class Doghouse < ActiveRecord::Base
     end
     
     def create_release_job
-      Doghouse.delay(run_at: duration_minutes.minutes.from_now).release!(id)
+      update_attribute(:job_id, Doghouse.delay(run_at: duration_minutes.minutes.from_now).release!(id).id)
     end
     
     def self.release!(doghouse_id)
@@ -31,5 +33,14 @@ class Doghouse < ActiveRecord::Base
       dogouse.user.twitter_api_authenticate!
       Twitter.follow(dogouse.screen_name)
       dogouse.update_attribute(:is_released, true)
+      Rails.cache.delete "following_users_#{doghouse.user.id}"
+    end
+    
+    def update_job
+      Delayed::Backend::ActiveRecord::Job.find(job_id).update_attribute(:run_at,  created_at + duration_minutes.minutes)
+    end
+    
+    def remove_job
+      Delayed::Backend::ActiveRecord::Job.find(job_id).destroy
     end
 end

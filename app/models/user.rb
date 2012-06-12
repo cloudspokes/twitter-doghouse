@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   end
   
   def get_following_users
-    Rails.cache.fetch("following_users_#{id}", expires_in: 5.minutes) do
+    Rails.cache.fetch("following_users_#{id}", expires_in: 3.minutes) do
       following_ids = get_following_ids
       users = []
       index = 0
