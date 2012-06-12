@@ -16,6 +16,11 @@
 </p>
 
 <p>
+  <b>Duration Minutes:</b>
+  <%= @doghouse.duration_minutes %>
+</p>
+
+<p>
   <b>Release date time:</b>
   <%= content_tag :span, @doghouse.release_date_time.to_time.to_i, class: 'utc-date-time' %>
 </p>

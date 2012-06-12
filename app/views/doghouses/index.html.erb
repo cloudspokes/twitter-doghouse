@@ -5,6 +5,7 @@
     <tr>
       <th>Screen name</th>
       <th>Created at</th>
+      <th>Duration Minutes</th>
       <th>Release date time</th>
       <th>Is released</th>
       <th></th>
@@ -16,6 +17,7 @@
     <tr>
       <td><%= doghouse.screen_name %></td>
       <td class='utc-date-time'><%= doghouse.created_at.to_time.to_i %></td>
+      <th><%= doghouse.duration_minutes %></td>
       <td class='utc-date-time'><%= doghouse.release_date_time.to_time.to_i %></td>
       <td><%= doghouse.is_released %></td>
       <td><%= link_to 'Show', doghouse %></td>
