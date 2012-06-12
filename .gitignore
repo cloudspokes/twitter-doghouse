@@ -17,4 +17,6 @@
 # Ignore RVM default
 /.rvmrc
 
+/.env
+
 .DS_Store
