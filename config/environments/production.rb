@@ -67,4 +67,7 @@ TwitterDoghouse::Application.configure do
   
   # Shrink the JS
   config.assets.js_compressor  = :uglifier
+  
+  TWITTER_KEY = ENV['TWITTER_KEY']
+  TWITTER_SECRET = ENV['TWITTER_SECRET']
 end

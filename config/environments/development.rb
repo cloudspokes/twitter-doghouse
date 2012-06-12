@@ -34,4 +34,7 @@ TwitterDoghouse::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  TWITTER_KEY = '7PIppB3vrEHsRuRdcnoQQ'
+  TWITTER_SECRET = 'O1CbKzZBFxg3wtUF9geehFV9uWBDNKJYVG0v76vh8'
 end
