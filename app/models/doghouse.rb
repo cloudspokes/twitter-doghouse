@@ -3,6 +3,7 @@ class Doghouse < ActiveRecord::Base
   
   validates :screen_name, presence: true
   validates :duration_minutes, numericality: {greater_than: 0 }
+  validate :tweet_lengths_below_max
   
   attr_accessible :screen_name, :duration_minutes, :enter_tweet, :exit_tweet
   
@@ -35,14 +36,12 @@ class Doghouse < ActiveRecord::Base
     
     def self.send_enter_tweet!(doghouse_id)
       doghouse = Doghouse.get_doghouse_and_authenticate doghouse_id
-      enter_tweet = doghouse.enter_tweet
-      Twitter.update(enter_tweet) if enter_tweet.present? and enter_tweet.length <= MAX_TWEET_CHARS
+      Twitter.update("@#{doghouse.screen_name} #{doghouse.enter_tweet}") if doghouse.enter_tweet.present?
     end
     
     def self.send_exit_tweet!(doghouse_id)
       doghouse = Doghouse.get_doghouse_and_authenticate doghouse_id
-      exit_tweet = doghouse.exit_tweet
-      Twitter.update(exit_tweet) if exit_tweet.present? and exit_tweet.length <= MAX_TWEET_CHARS
+      Twitter.update("@#{doghouse.screen_name} #{doghouse.exit_tweet}") if doghouse.exit_tweet.present?
     end
     
     def self.release!(doghouse_id)
@@ -65,5 +64,10 @@ class Doghouse < ActiveRecord::Base
       doghouse = Doghouse.find(doghouse_id)
       doghouse.user.twitter_api_authenticate!
       doghouse
+    end
+    
+    def tweet_lengths_below_max
+      errors.add(:enter_tweet, 'Too long') if (enter_tweet.length + screen_name.length) > MAX_TWEET_CHARS
+      errors.add(:exit_tweet, 'Too long') if (exit_tweet.length + screen_name.length) > MAX_TWEET_CHARS
     end
 end
