@@ -4,11 +4,14 @@ class Doghouse < ActiveRecord::Base
   
   validates :screen_name, presence: true
   validates :duration_minutes, numericality: {greater_than: 0 }
+  validates :duration_minutes_multiplier, numericality: {greater_than: 0 }, allow_blank: true
   validate :tweet_lengths_below_max
   
-  attr_accessible :screen_name, :duration_minutes, :enter_tweet, :exit_tweet
-  attr_accessible :screen_name, :duration_minutes, :request_from_twitter_id, as: :safe_code
+  attr_accessor :duration_minutes_multiplier
+  attr_accessible :screen_name, :duration_minutes, :enter_tweet, :exit_tweet, :duration_minutes_multiplier
+  attr_accessible :screen_name, :duration_minutes, :request_from_twitter_id, :enter_tweet, as: :safe_code
   
+  before_create :multiply_duration_minutes, if: :duration_minutes_multiplier
   after_create :enter_doghouse_actions
   after_save :update_job, on: :update, unless: :is_released
   after_destroy :remove_job, unless: :is_released
@@ -71,5 +74,9 @@ class Doghouse < ActiveRecord::Base
     def tweet_lengths_below_max
       errors.add(:enter_tweet, 'Too long') if enter_tweet and (enter_tweet.length + screen_name.length) > MAX_TWEET_CHARS
       errors.add(:exit_tweet, 'Too long') if exit_tweet and (exit_tweet.length + screen_name.length) > MAX_TWEET_CHARS
+    end
+    
+    def multiply_duration_minutes
+      self.duration_minutes = duration_minutes.to_i * duration_minutes_multiplier.to_i
     end
 end
