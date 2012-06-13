@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612223315) do
+ActiveRecord::Schema.define(:version => 20120613055539) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -33,15 +33,27 @@ ActiveRecord::Schema.define(:version => 20120612223315) do
     t.integer  "user_id"
     t.string   "screen_name"
     t.boolean  "is_released"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.integer  "duration_minutes"
     t.integer  "job_id"
     t.string   "enter_tweet"
     t.string   "exit_tweet"
+    t.integer  "request_from_twitter_id"
   end
 
+  add_index "doghouses", ["request_from_twitter_id"], :name => "index_doghouses_on_request_from_twitter_id"
   add_index "doghouses", ["user_id"], :name => "index_doghouses_on_user_id"
+
+  create_table "request_from_twitters", :force => true do |t|
+    t.string   "tweet_id"
+    t.string   "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  add_index "request_from_twitters", ["user_id"], :name => "index_request_from_twitters_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "provider"
@@ -53,5 +65,7 @@ ActiveRecord::Schema.define(:version => 20120612223315) do
     t.string   "secret"
     t.string   "nickname"
   end
+
+  add_index "users", ["nickname"], :name => "index_users_on_nickname"
 
 end

@@ -1,1 +1,2 @@
 MAX_TWEET_CHARS = 140
+SEARCH_QUERY = '@TwitDoghouse'
