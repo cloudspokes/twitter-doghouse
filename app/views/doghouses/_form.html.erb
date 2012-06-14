@@ -2,7 +2,9 @@
   <%= f.input :screen_name, collection: following_users_collection, allow_blank: false if f.object.new_record? %>
   <%= f.input :duration_minutes, label: 'How Long?' %>
   <%= f.input :duration_minutes_multiplier, collection: duration_minutes_multiplier_collection, label: 'How long type', include_blank: false if f.object.new_record? %>
+  <%= f.input :canned_enter_tweet_id, collection: canned_tweets_collection(@canned_enter_tweets), include_blank: false %>
   <%= f.input :enter_tweet, hint: '', hint_html: {class: 'tweet_hint'}, input_html: {class: 'tweet_text'} if f.object.new_record? %>
+  <%= f.input :canned_exit_tweet_id, collection: canned_tweets_collection(@canned_exit_tweets), include_blank: false %>
   <%= f.input :exit_tweet, hint: '', hint_html: {class: 'tweet_hint'}, input_html: {class: 'tweet_text'} %>
   <%= f.button :submit %>
 <% end %>

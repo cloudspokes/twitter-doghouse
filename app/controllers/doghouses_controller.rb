@@ -1,5 +1,6 @@
 class DoghousesController < ApplicationController
   skip_before_filter :user_authenticated, only: :index
+  before_filter :set_locals, only: [:new, :create]
   
   def index
     @doghouses = current_user.doghouses if current_user
@@ -11,7 +12,6 @@ class DoghousesController < ApplicationController
 
   def new
     @doghouse = Doghouse.new
-    @following_users = current_user.get_following_users
   end
 
   def edit
@@ -23,7 +23,6 @@ class DoghousesController < ApplicationController
     if @doghouse.save
       redirect_to @doghouse, notice: 'Doghouse was successfully created.'
     else
-      @following_users = current_user.get_following_users
       render action: "new"
     end
   end
@@ -42,4 +41,12 @@ class DoghousesController < ApplicationController
     @doghouse.destroy
     redirect_to doghouses_url
   end
+  
+  private
+  
+    def set_locals
+      @following_users = current_user.get_following_users
+      @canned_enter_tweets = CannedTweet.enter_tweets
+      @canned_exit_tweets = CannedTweet.exit_tweets
+    end
 end

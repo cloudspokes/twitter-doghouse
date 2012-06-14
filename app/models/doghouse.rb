@@ -7,11 +7,12 @@ class Doghouse < ActiveRecord::Base
   validates :duration_minutes_multiplier, numericality: {greater_than: 0 }, allow_blank: true
   validate :tweet_lengths_below_max
   
-  attr_accessor :duration_minutes_multiplier
-  attr_accessible :screen_name, :duration_minutes, :enter_tweet, :exit_tweet, :duration_minutes_multiplier
+  attr_accessor :duration_minutes_multiplier, :canned_enter_tweet_id, :canned_exit_tweet_id
+  attr_accessible :screen_name, :duration_minutes, :enter_tweet, :exit_tweet, :duration_minutes_multiplier, :canned_enter_tweet_id, :canned_exit_tweet_id
   attr_accessible :screen_name, :duration_minutes, :request_from_twitter_id, :enter_tweet, as: :safe_code
   
   before_create :multiply_duration_minutes, if: :duration_minutes_multiplier
+  before_save :handle_canned_tweets
   after_create :enter_doghouse_actions
   after_save :update_job, on: :update, unless: :is_released
   after_destroy :remove_job, unless: :is_released
@@ -78,5 +79,10 @@ class Doghouse < ActiveRecord::Base
     
     def multiply_duration_minutes
       self.duration_minutes = duration_minutes.to_i * duration_minutes_multiplier.to_i
+    end
+    
+    def handle_canned_tweets
+      self.enter_tweet = CannedTweet.find(canned_enter_tweet_id).text if canned_enter_tweet_id and canned_enter_tweet_id.to_i.nonzero?
+      self.exit_tweet = CannedTweet.find(canned_exit_tweet_id).text if canned_exit_tweet_id and canned_exit_tweet_id.to_i.nonzero?
     end
 end
