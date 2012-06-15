@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120614000930) do
+ActiveRecord::Schema.define(:version => 20120615014607) do
 
   create_table "canned_tweets", :force => true do |t|
     t.string   "description"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20120614000930) do
     t.string   "token"
     t.string   "secret"
     t.string   "nickname"
+    t.string   "image"
   end
 
   add_index "users", ["nickname"], :name => "index_users_on_nickname"

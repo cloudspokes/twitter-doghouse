@@ -1,6 +1,6 @@
 class DoghousesController < ApplicationController
   skip_before_filter :user_authenticated, only: :index
-  before_filter :set_locals, only: [:index, :new, :create]
+  before_filter :set_locals, only: [:index, :create], if: :current_user
   
   def index
     @doghouses = current_user.doghouses if current_user
