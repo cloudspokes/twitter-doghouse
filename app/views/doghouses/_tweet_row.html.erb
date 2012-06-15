@@ -5,10 +5,10 @@
   <% end %>
   <%= content_tag :div, class: 'span5' do %>
     <%= content_tag :div, id: "#{type}_tweet_preview", class: 'tweet-preview' do %>
+      <%= image_tag @current_user.image, class: 'tweeterImage' %>
       <%= content_tag :div, class: 'tweet-preview-header' do %>
-        <%= image_tag @current_user.image %>
-        <%= content_tag :span, @current_user.name %>
-        <%= content_tag :span, "@#{@current_user.nickname}" %>
+        <%= content_tag :span, @current_user.name, class: 'username' %>
+        <%= content_tag :span, "@#{@current_user.nickname}", class: 'nickname' %>
       <% end %>
       <%= content_tag :div, nil, id: "#{type}_tweet_preview_text" %>
     <% end %>

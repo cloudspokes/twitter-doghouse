@@ -1,0 +1,36 @@
+@import "twitter/bootstrap/mixins";
+
+.tweet-preview {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  .border-radius(5px);
+  .box-shadow(0 1px 3px #ddd);
+  .clearfix();
+  
+  .tweeterImage {
+    float: left;
+    margin-right: 5px;
+    .border-radius(5px);
+  }
+  
+  .tweet-preview-header {
+    float: left;
+    width: 80%;
+
+    .username {
+      font-weight: bold;
+      color: #333;
+      font-size: 16px;
+    }
+    .nickname {
+      color: #999;
+      font-size: 12px;
+    }
+  }
+  
+  #enter_tweet_preview_text,
+  #exit_tweet_preview_text {
+    float: left;
+  }
+}
