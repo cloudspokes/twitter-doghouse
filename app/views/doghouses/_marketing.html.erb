@@ -1,1 +1,39 @@
-MARKETING!
+<%= content_tag :div, class: '' do %>
+  <%= content_tag :div, class: 'row' do %>
+    <%= content_tag :div, class: 'span4' do %>
+      <%= image_tag 'doghouse.png', class: 'taglineLogo'  %>
+      <%= content_tag :a, class: 'btn btn-large' do %>
+        <%= content_tag :i, ' View on GitHub', class: 'icon-github' %>
+      <% end %>
+      <%= content_tag :a, class: 'btn btn-large btn-primary' do %>
+        <%= content_tag :i, ' Sign in with Twitter', class: 'icon-twitter' %>
+      <% end %>
+    <% end %>
+    <%= content_tag :div, class: 'span8' do %>
+      <%= content_tag :div, class: 'hero-unit' do %>
+        <%= content_tag :h1, 'Twitter DogHouse' %>
+        <p>Social networking with Twitter is great except when the people you follow pollute your feed with sponsored spam, political flamewars, and live-tweets of some show or event you don't care about. With this app you can <strong>unfollow</strong> them, and tell them they are being annoying and <strong>refollow them after a specified amount of time.</strong></p>
+        <p><span>Watch</span> <span>Fork</span> <span>Follow DogHouse</span> <span>Tweets</span></p>
+      <% end %>
+    <% end %>
+  <% end %>
+  <hr>
+  <%= content_tag :div, class: 'row' do %>
+    <%= content_tag :div, class: 'span12' do %>
+      <%= content_tag :div, class: 'marketingHeading' do %>
+        <%= content_tag :h1, 'How does it work' %>
+      <% end %>
+    <% end %>
+    <%= content_tag :div, class: 'span4' do %>
+      <h3><i class="icon-hand-up icon-large"></i> Select the user</h3>
+      <p>Upon signing in with Twitter, you can search the people you follow and choose them.</p>
+    <% end %>
+    <%= content_tag :div, class: 'span4' do %>
+      <h3><i class="icon-hand-down icon-large"></i> Add him to the DogHouse</h3>
+      <p>After selecting the user and time of punishment you can add him to the DogHouse.</p>
+    <% end %>
+    <%= content_tag :div, 'span4' do %>
+      <h3><i class="icon-undo icon-large"></i> Automatically release from DogHouse</h3>
+    <% end %>
+  <% end %>
+<% end %>

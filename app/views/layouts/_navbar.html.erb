@@ -5,6 +5,7 @@
       <%= content_tag :a, "#{content_tag(:span, nil, class: 'icon-bar') * 3}".html_safe, class: 'btn btn-navbar', data: {toggle: 'collapse', target: '.nav-collapse'} %>
       <%= content_tag :div, class: 'nav-collapse' do %>
         <%= content_tag :ul, class: 'nav pull-right' do %>
+           <%= content_tag :li, link_to("How does it work", "/auth/twitter") %>
           <% if @current_user %>
             <%= content_tag :li, link_to("#{@current_user.name}".html_safe) %>
             <%= content_tag :li, link_to("#{content_tag :i, nil, class: 'icon-signout'} Log Out".html_safe, signout_path) %>
