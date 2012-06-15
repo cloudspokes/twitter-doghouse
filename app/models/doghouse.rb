@@ -1,4 +1,7 @@
 class Doghouse < ActiveRecord::Base
+  NONE_TWEET = 'none'
+  CUSTOM_TWEET = 'custom'
+  
   belongs_to :user
   belongs_to :request_from_twitter
   
@@ -82,7 +85,19 @@ class Doghouse < ActiveRecord::Base
     end
     
     def handle_canned_tweets
-      self.enter_tweet = CannedTweet.find(canned_enter_tweet_id).text if canned_enter_tweet_id and canned_enter_tweet_id.to_i.nonzero?
-      self.exit_tweet = CannedTweet.find(canned_exit_tweet_id).text if canned_exit_tweet_id and canned_exit_tweet_id.to_i.nonzero?
+      if canned_enter_tweet_id
+        if canned_enter_tweet_id == NONE_TWEET
+          self.enter_tweet = ''
+        elsif canned_enter_tweet_id.to_i.nonzero?
+          self.enter_tweet = CannedTweet.find(canned_enter_tweet_id).text
+        end
+      end
+      if canned_exit_tweet_id
+        if canned_exit_tweet_id == NONE_TWEET
+          self.exit_tweet = ''
+        elsif canned_exit_tweet_id.to_i.nonzero?
+          self.exit_tweet = CannedTweet.find(canned_exit_tweet_id).text
+        end
+      end
     end
 end

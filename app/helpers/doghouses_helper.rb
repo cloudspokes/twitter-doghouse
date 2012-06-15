@@ -8,8 +8,9 @@ module DoghousesHelper
   end
   
   def canned_tweets_collection(canned_tweets)
-    collection = canned_tweets.map {|canned_tweet| [canned_tweet.description, canned_tweet.id]}
-    collection.insert 0, ['Custom', 0]
+    collection = canned_tweets.map {|canned_tweet| [canned_tweet.description, canned_tweet.id, {:'data-text' => canned_tweet.text}]}
+    collection << ['Write My Own', Doghouse::CUSTOM_TWEET]
+    collection << ['None', Doghouse::NONE_TWEET]
     collection
   end
   

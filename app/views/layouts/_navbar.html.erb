@@ -1,7 +1,7 @@
 <%= content_tag :div, class: 'navbar' do %>
   <%= content_tag :div, class: 'navbar-inner' do %>
     <%= content_tag :div, class: 'container' do %>
-      <%= link_to image_tag('logo.png'), root_url, class: "brand" %>
+      <%= link_to "#{image_tag('logo.png')} Twitter DogHouse".html_safe, root_url, class: "brand" %>
       <%= content_tag :a, "#{content_tag(:span, nil, class: 'icon-bar') * 3}".html_safe, class: 'btn btn-navbar', data: {toggle: 'collapse', target: '.nav-collapse'} %>
       <%= content_tag :div, class: 'nav-collapse' do %>
         <%= content_tag :ul, class: 'nav pull-right' do %>

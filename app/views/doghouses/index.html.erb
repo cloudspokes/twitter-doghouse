@@ -1,33 +1,5 @@
 <% if @current_user %>
-  <h1>Listing doghouses</h1>
-
-  <table>
-    <tr>
-      <th>Screen name</th>
-      <th>Created at</th>
-      <th>Duration Minutes</th>
-      <th>Release date time</th>
-      <th>Is released</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-
-  <% @doghouses.each do |doghouse| %>
-    <tr>
-      <td><%= doghouse.screen_name %></td>
-      <td class='utc-date-time'><%= doghouse.created_at.to_time.to_i %></td>
-      <th><%= doghouse.duration_minutes %></td>
-      <td class='utc-date-time'><%= doghouse.release_date_time.to_time.to_i %></td>
-      <td><%= doghouse.is_released %></td>
-      <td><%= link_to 'Show', doghouse %></td>
-      <td><%= link_to 'Edit', edit_doghouse_path(doghouse) %></td>
-      <td><%= link_to 'Destroy', doghouse, confirm: 'Are you sure?', method: :delete %></td>
-    </tr>
-  <% end %>
-  </table>
-
-  <br />
-
-  <%= link_to 'New Doghouse', new_doghouse_path %>
+  <%= render 'form' %>
+<% else %>
+  <%= render partial: 'marketing' %>
 <% end %>

@@ -1,9 +1,10 @@
 class DoghousesController < ApplicationController
   skip_before_filter :user_authenticated, only: :index
-  before_filter :set_locals, only: [:new, :create]
+  before_filter :set_locals, only: [:index, :new, :create]
   
   def index
     @doghouses = current_user.doghouses if current_user
+    @new_doghouse = Doghouse.new duration_minutes_multiplier: 1
   end
 
   def show
@@ -11,7 +12,7 @@ class DoghousesController < ApplicationController
   end
 
   def new
-    @doghouse = Doghouse.new
+    
   end
 
   def edit
