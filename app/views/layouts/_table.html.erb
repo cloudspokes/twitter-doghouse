@@ -1,0 +1,16 @@
+<%= content_tag :table, class: 'table' do %>
+  <%= content_tag :thead do %>
+    <% for heading in table_data[:headings] %>
+      <%= content_tag :th, heading %>
+    <% end %>
+  <% end %>
+  <%= content_tag :tbody do %>
+    <% for row in table_data[:data] %>
+      <%= content_tag :tr do %>
+        <% for cell in row %>
+          <%= content_tag :td, cell %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

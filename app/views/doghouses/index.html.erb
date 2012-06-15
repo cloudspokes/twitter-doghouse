@@ -1,5 +1,7 @@
 <% if @current_user %>
   <%= render 'form' %>
+  <%= content_tag :h2, 'Existing users in your DogHouse' %>
+  <%= content_tag :div, render('doghouse'), id: 'doghouse' %>
 <% else %>
   <%= render partial: 'marketing' %>
 <% end %>

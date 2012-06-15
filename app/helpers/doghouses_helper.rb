@@ -14,4 +14,14 @@ module DoghousesHelper
     collection
   end
   
+  def doghouse_table_data
+    to_return = {headings: ['Twitter username', 'Created on', 'Expires in', 'Expiration tweet', ''], data: []}
+    for doghouse in @doghouses
+      to_return[:data] << [
+        
+      ]
+    end
+    to_return
+  end
+  
 end
