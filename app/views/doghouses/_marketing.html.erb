@@ -19,21 +19,37 @@
   <% end %>
   <hr>
   <%= content_tag :div, class: 'row' do %>
-    <%= content_tag :div, class: 'span12' do %>
-      <%= content_tag :div, class: 'marketingHeading' do %>
-        <%= content_tag :h1, 'How does it work' %>
-      <% end %>
+    <%= content_tag :div, class: 'marketing-heading' do %>
+      <%= content_tag :h1, 'How does it work' %>
     <% end %>
     <%= content_tag :div, class: 'span4' do %>
       <h3><i class="icon-hand-up icon-large"></i> Select the user</h3>
       <p>Upon signing in with Twitter, you can search the people you follow and choose them.</p>
     <% end %>
     <%= content_tag :div, class: 'span4' do %>
-      <h3><i class="icon-hand-down icon-large"></i> Add him to the DogHouse</h3>
+      <h3><i class="icon-hand-down icon-large"></i> Add to DogHouse</h3>
       <p>After selecting the user and time of punishment you can add him to the DogHouse.</p>
     <% end %>
     <%= content_tag :div, 'span4' do %>
       <h3><i class="icon-undo icon-large"></i> Automatically release from DogHouse</h3>
+      <p>The user will be automatically re-followed after the expiration of the time that you specify.</p>
+    <% end %>
+  <% end %>
+  <hr />
+  <%= content_tag :div, class: 'row' do %>
+    <%= content_tag :div, class: 'marketing-heading' do %>
+      <%= content_tag :h1, 'Using DogHouse right within twitter' %>
+    <% end %>
+    <%= content_tag :div, class: 'span6' do %>
+      <%= content_tag :div, class: 'well' do %>
+        <h3>Twitter DogHouse syntax</h3>
+        <p><code>@TwitDoghouse</code> <code>username</code> <code>timeframe</code> <code>optional tweet text</code></p>
+      <% end %>
+      <%= content_tag :span, '*This feature requires you to sign in into DogHouse at least once.', class: 'label' %>
+    <% end %>
+    <%= content_tag :div, class: 'span4' do %>
+      <h3>Examples:</h3>
+      <p>Upon signing in with Twitter, you can search the people you follow and choose them.</p>
     <% end %>
   <% end %>
 <% end %>

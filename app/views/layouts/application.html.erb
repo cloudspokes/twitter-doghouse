@@ -28,6 +28,7 @@
       <%= content_tag :div, class: 'row' do %>
         <%= content_tag :div, content_tag(:div, yield, class: "tab-content main_area single_column"), class: "span12" %>
       <% end %>
+      <%= render 'layouts/footer' %> 
     <% end %>
     <%= debug(params) if Rails.env.development? %>
   <% end %>
