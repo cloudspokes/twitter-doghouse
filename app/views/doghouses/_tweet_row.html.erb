@@ -4,6 +4,9 @@
     <%= f.input "#{type}_tweet", hint: '', hint_html: {class: 'tweet_hint'}, input_html: {class: 'tweet_text input-xlarge', rows: TEXT_AREA_ROWS}, as: :text, label: false %>
   <% end %>
   <%= content_tag :div, class: 'span5' do %>
+    <%= content_tag :h3 do %>
+      <%= content_tag :small, 'Tweet Preview' %>
+    <% end %>
     <%= content_tag :div, id: "#{type}_tweet_preview", class: 'tweet-preview' do %>
       <%= image_tag @current_user.image, class: 'tweeterImage' %>
       <%= content_tag :div, class: 'tweet-preview-header' do %>
