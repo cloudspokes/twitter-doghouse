@@ -1,6 +1,6 @@
 <%= content_tag :div, class: 'row' do %>
   <%= content_tag :div, class: 'span10' do %>
-    <%= simple_form_for(@new_doghouse, html: {class: 'form-horizontal'}) do |f| %>
+    <%= simple_form_for(@new_doghouse, html: {class: 'form-horizontal'}, remote: true) do |f| %>
       <%= content_tag :fieldset do %>
         <%= content_tag :legend, 'Add a person to the DogHouse' %>
         <%= f.input :screen_name, collection: following_users_collection, allow_blank: false, label: 'Twitter Username' %>
@@ -9,7 +9,7 @@
         <%= render partial: 'tweet_row', locals: {type: CannedTweet::ENTER_TYPE, f: f, label: 'Tweet to send when inserting in DogHouse'} %>
         <%= render partial: 'tweet_row', locals: {type: CannedTweet::EXIT_TYPE, f: f, label: 'Tweet to send when releasing from DogHouse'} %>
       <% end %>
-      <%= f.button :submit %>
+      <%= f.button :submit, 'Add to DogHouse', id: 'create_doghouse_submit' %>
     <% end %>
   <% end %>
 <% end %>

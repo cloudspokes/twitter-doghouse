@@ -1,30 +1,21 @@
 class DoghousesController < ApplicationController
   skip_before_filter :user_authenticated, only: :index
-  before_filter :set_locals, only: [:index, :create], if: :current_user
   
   def index
-    @doghouses = current_user.doghouses if current_user
-    @new_doghouse = Doghouse.new duration_minutes_multiplier: 1
-  end
-
-  def show
-    @doghouse = Doghouse.find(params[:id])
-  end
-
-  def new
-    
-  end
-
-  def edit
-    @doghouse = Doghouse.find(params[:id])
+    if current_user
+      @new_doghouse = Doghouse.new duration_minutes_multiplier: 1
+      @following_users = current_user.get_following_users
+      @canned_enter_tweets = CannedTweet.enter_tweets
+      @canned_exit_tweets = CannedTweet.exit_tweets
+      @doghouses = current_user.doghouses
+    end
   end
 
   def create
     @doghouse = current_user.doghouses.build(params[:doghouse])
-    if @doghouse.save
-      redirect_to @doghouse, notice: 'Doghouse was successfully created.'
-    else
-      render action: "new"
+    @error = true unless @doghouse.save
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -42,12 +33,4 @@ class DoghousesController < ApplicationController
     @doghouse.destroy
     redirect_to doghouses_url
   end
-  
-  private
-  
-    def set_locals
-      @following_users = current_user.get_following_users
-      @canned_enter_tweets = CannedTweet.enter_tweets
-      @canned_exit_tweets = CannedTweet.exit_tweets
-    end
 end
