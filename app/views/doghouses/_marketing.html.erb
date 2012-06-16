@@ -40,16 +40,28 @@
     <%= content_tag :div, class: 'marketing-heading' do %>
       <%= content_tag :h1, 'Using DogHouse right within twitter' %>
     <% end %>
-    <%= content_tag :div, class: 'span6' do %>
+    <%= content_tag :div, class: 'span6 twitter-syntax' do %>
+      <%= content_tag :h3, 'Twitter DogHouse syntax*' %>
       <%= content_tag :div, class: 'well' do %>
-        <h3>Twitter DogHouse syntax</h3>
-        <p><code>@TwitDoghouse</code> <code>username</code> <code>timeframe</code> <code>optional tweet text</code></p>
+        <%= content_tag :p, '@TwitDoghouse <code>username</code> <code>timeframe</code> <code>tweet</code>'.html_safe %>
       <% end %>
-      <%= content_tag :span, '*This feature requires you to sign in into DogHouse at least once.', class: 'label' %>
+      <p><code>username</code> = the person that you want to add to the DogHouse (without the @ symbol!)</p>
+      <p>
+        <code>timeframe</code> = for how long do you want to keep the person in the DogHouse
+        <ul class="unstyled">
+          <li><code>#m</code> number of minutes</li>
+          <li><code>#h</code> number of hours</li>
+          <li><code>#d</code> number of days</li>
+        </ul>
+      </p>
+      <p><code>tweet</code> = optionat tweet message when adding a person to the DogHouse</p>
+      <%= content_tag :span, '* This feature requires you to sign in to DogHouse at least once.', class: 'label pull-right' %>
     <% end %>
     <%= content_tag :div, class: 'span4' do %>
-      <h3>Examples:</h3>
-      <p>Upon signing in with Twitter, you can search the people you follow and choose them.</p>
+      <%= content_tag :h3, 'Example:' %>
+      <%= content_tag :p, '@TwitDoghouse JureStern 5d because you are yapping too much.' %>
+      <%= content_tag :h3, 'Result:' %>
+      <%= content_tag :p, 'The user JureStern would be unfollowed for 5 days and twitted with a message "because you are yapping too much."' %>
     <% end %>
   <% end %>
 <% end %>

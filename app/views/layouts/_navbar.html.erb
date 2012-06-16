@@ -1,4 +1,4 @@
-<%= content_tag :div, class: 'navbar' do %>
+<%= content_tag :nav, class: 'navbar' do %>
   <%= content_tag :div, class: 'navbar-inner' do %>
     <%= content_tag :div, class: 'container' do %>
       <%= link_to "#{image_tag('logo.png')} Twitter DogHouse".html_safe, root_url, class: "brand" %>
@@ -7,9 +7,11 @@
         <%= content_tag :ul, class: 'nav pull-right' do %>
            <%= content_tag :li, link_to("How does it work", "/auth/twitter") %>
           <% if @current_user %>
+            <%= content_tag :li, nil, class: 'divider-vertical' %>
             <%= content_tag :li, link_to("#{@current_user.name}".html_safe) %>
             <%= content_tag :li, link_to("#{content_tag :i, nil, class: 'icon-signout'} Log Out".html_safe, signout_path) %>
           <% else %>
+            <%= content_tag :li, nil, class: 'divider-vertical' %>
             <%= content_tag :li, link_to("Sign in with Twitter", "/auth/twitter") %>
           <% end %>
         <% end %>
