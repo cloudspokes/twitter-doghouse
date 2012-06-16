@@ -1,5 +1,5 @@
 <%= content_tag :footer do %>
   <%= content_tag :hr %>
-  <%= content_tag :p, link_to('Back to top', '#'), class: 'pull-right' %>
+  <%= content_tag :p, link_to('<i class="icon-circle-arrow-up"></i> Back to top'.html_safe, '#'), class: 'pull-right' %>
   <%= content_tag :p, "Developed by #{link_to 'Elan Dubrofsky', 'http://www.linkedin.com/pub/elan-dubrofsky/30/243/394', target: '_blank'}, design and front-end by #{link_to 'Jure Stern', 'http://jure-stern.si/en', target: '_blank'}".html_safe %>
 <% end %>

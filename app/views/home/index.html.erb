@@ -20,15 +20,15 @@
     <% end %>
     <%= content_tag :div, class: 'span4' do %>
       <h3><i class="icon-hand-up icon-large"></i> Select the user</h3>
-      <p>Upon signing in with Twitter, you can search the people you follow and choose them.</p>
+      <%= content_tag :p, 'Upon signing in with Twitter, you can search the people you follow and choose them.' %>
     <% end %>
     <%= content_tag :div, class: 'span4' do %>
       <h3><i class="icon-hand-down icon-large"></i> Add to DogHouse</h3>
-      <p>After selecting the user and time of punishment you can add him to the DogHouse.</p>
+      <%= content_tag :p, 'After selecting the user and time of punishment you can add him to the DogHouse.' %>
     <% end %>
     <%= content_tag :div, 'span4' do %>
       <h3><i class="icon-undo icon-large"></i> Automatically release from DogHouse</h3>
-      <p>The user will be automatically re-followed after the expiration of the time that you specify.</p>
+      <%= content_tag :p, 'The user will be automatically re-followed after the expiration of the time that you specify.' %>
     <% end %>
   <% end %>
   <%= content_tag :div, id: 'twittersyntax', class: 'row' do %>
