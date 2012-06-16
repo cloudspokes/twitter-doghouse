@@ -1,7 +1,7 @@
 <%= content_tag :div, class: 'row' do %>
   <%= content_tag :div, class: 'span10' do %>
     <% if @active_doghouses.any? %>
-      <%= content_tag :table, class: 'table' do %>
+      <%= content_tag :table, class: 'table table-striped doghouse-table' do %>
         <%= content_tag :thead do %>
           <%= content_tag :th, 'Twitter username' %>
           <%= content_tag :th, 'Created on' %>
@@ -13,8 +13,10 @@
           <% for doghouse in @active_doghouses %>
             <%= content_tag :tr do %>
               <%= content_tag :td do %>
-                <%= content_tag :span, doghouse.screen_name %>
-                <%= image_tag doghouse.profile_image, class: 'twitter-image' %>
+                <% content_tag :div, class: 'twitter-image-name' do %>
+                  <%= image_tag doghouse.profile_image, class: 'twitter-image' %><br />
+                  <%= content_tag :span, doghouse.screen_name %>
+                <% end %>
               <% end %>
               <%= content_tag :td, content_tag(:span, doghouse.created_at.to_time.to_i, class: 'utc-date-time') %>
               <%= content_tag :td, 'COUNTDOWN' %>
