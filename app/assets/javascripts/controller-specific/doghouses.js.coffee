@@ -132,10 +132,13 @@ $ ->
   dialog_initializers()
   
   # Fill the screen name select box with people the user follows on twitter
-  jQuery.getJSON '/get_following_ids', {user_id: $('#current_user').attr('data-id')}, (following_ids) ->
+  # Originally fetched this information in the controller but is was causing slow page load times.
+    # This is a much cleaner solution.
+  current_user_span = $('#current_user')
+  jQuery.getJSON current_user_span.attr('data-get-following-ids-path'), {user_id: current_user_span.attr('data-id')}, (following_ids) ->
     index = 0
     while index < following_ids.length
-      jQuery.getJSON '/get_screen_names', {ids: following_ids[index...(index+MAX_SCREEN_NAMES_PER_QUERY)]}, (screen_names) ->
+      jQuery.getJSON current_user_span.attr('data-get-screen-names-path'), {ids: following_ids[index...(index+MAX_SCREEN_NAMES_PER_QUERY)]}, (screen_names) ->
         put_screen_names_in_select screen_names
       index += MAX_SCREEN_NAMES_PER_QUERY
   

@@ -5,8 +5,8 @@ TwitterDoghouse::Application.routes.draw do
   end
   root :to => "home#index"
   match 'app' => "doghouses#index", as: :app
-  match 'get_following_ids' => "users#get_following_ids"
-  match 'get_screen_names' => "users#get_screen_names"
+  match 'get_following_ids' => "users#get_following_ids", as: :get_following_ids
+  match 'get_screen_names' => "users#get_screen_names", as: :get_screen_names
 
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", as: :signout
