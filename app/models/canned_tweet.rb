@@ -5,6 +5,6 @@ class CannedTweet < ActiveRecord::Base
   validates :tweet_type, inclusion: [ENTER_TYPE, EXIT_TYPE]
   attr_accessible :description, :text, :tweet_type
   
-  scope :enter_tweets, where('tweet_type = ?', ENTER_TYPE)
-  scope :exit_tweets, where('tweet_type = ?', EXIT_TYPE)
+  scope :enter_tweets, where('tweet_type = ?', ENTER_TYPE).order('id')
+  scope :exit_tweets, where('tweet_type = ?', EXIT_TYPE).order('id')
 end
