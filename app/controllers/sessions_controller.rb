@@ -2,6 +2,9 @@ class SessionsController < ApplicationController
   
   skip_before_filter :user_authenticated
   
+  # Recieve twitter omniauth response
+  # Create new user if doesn't already exit
+  # Log in the authenticated user
   def create
     auth = request.env["omniauth.auth"]
     user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
@@ -9,6 +12,7 @@ class SessionsController < ApplicationController
     redirect_to app_path
   end
 
+  # Log out
   def destroy
     session[:user_id] = nil
     redirect_to root_url

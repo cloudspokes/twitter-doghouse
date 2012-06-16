@@ -1,8 +1,12 @@
 $ ->
   # Initialize bootstrap flash messages
   $(".alert").alert()
+  
+  # Put div around bootstrap submit button
   $('.submit_button').each ->
     $(@).wrap "<div class='form-actions'>"
+      
+  # Format all dates to show local timezone
   formatDates()
       
 getPrettyDateTime = (date) ->
