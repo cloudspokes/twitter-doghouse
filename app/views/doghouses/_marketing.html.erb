@@ -17,10 +17,10 @@
       <% end %>
     <% end %>
   <% end %>
-  <hr>
-  <%= content_tag :div, class: 'row' do %>
+  <%= content_tag :div, id: 'howdoeswork', class: 'row' do %>
     <%= content_tag :div, class: 'marketing-heading' do %>
       <%= content_tag :h1, 'How does it work' %>
+      <%= content_tag :hr %>
     <% end %>
     <%= content_tag :div, class: 'span4' do %>
       <h3><i class="icon-hand-up icon-large"></i> Select the user</h3>
@@ -35,10 +35,10 @@
       <p>The user will be automatically re-followed after the expiration of the time that you specify.</p>
     <% end %>
   <% end %>
-  <hr />
-  <%= content_tag :div, class: 'row' do %>
+  <%= content_tag :div, id: 'twittersyntax', class: 'row' do %>
     <%= content_tag :div, class: 'marketing-heading' do %>
       <%= content_tag :h1, 'Using DogHouse right within twitter' %>
+      <%= content_tag :hr %>
     <% end %>
     <%= content_tag :div, class: 'span6 twitter-syntax' do %>
       <%= content_tag :h3, 'Twitter DogHouse syntax*' %>
