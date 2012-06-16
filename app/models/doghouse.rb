@@ -69,10 +69,6 @@ class Doghouse < ActiveRecord::Base
     # Tell Twitter to have the user unfollow the selected screen name
     def unfollow!
       Twitter.unfollow(screen_name)
-      # Remove the screen_name from the cache of names the user follows
-      cache_key = "following_users_#{user.id}"
-      following_users = Rails.cache.read(cache_key)
-      Rails.cache.write(cache_key, following_users.reject{|f| f.screen_name == screen_name}) if following_users
     end
     
     # Create the delayed job to release the doghouse entry after the specified duration
@@ -93,14 +89,12 @@ class Doghouse < ActiveRecord::Base
       Twitter.update("@#{doghouse.screen_name} #{doghouse.exit_tweet}") if doghouse.exit_tweet.present?
     end
     
-    # Release a doghouse entry (refollow the user, send exit tweet, set doghouse entry to 'released', remove following_users from cache)
+    # Release a doghouse entry (refollow the user, send exit tweet, set doghouse entry to 'released'
     def self.release!(doghouse_id)
       doghouse = Doghouse.get_doghouse_and_authenticate doghouse_id
       Twitter.follow(doghouse.screen_name)
       Doghouse.delay.send_exit_tweet!(doghouse.id)
       doghouse.update_attribute(:is_released, true)
-      # Delete from cache so the now re-followed screen_name will be retrieved next time the following users list is queried for
-      Rails.cache.delete "following_users_#{doghouse.user.id}"
     end
     
     # Update the release job if the duration has changed 

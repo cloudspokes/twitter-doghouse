@@ -13,7 +13,6 @@ Deployment instructions:
 - This app uses Delayed Job to run many asynchronous tasks. 
   - I run the app with Foreman (forman start) which runs the server and my worker.
   - This executes the Procfile. Make sure you have created a .env file: http://stackoverflow.com/questions/9765860/foreman-start-error-server-rb33-missing-argument
-- I use memcached for a cache. If you don't have it installed, you can install it with Homebrew: brew install memcached
 - Constants are set in config/initializers/constants.rb
 - You will need to connect to your own Twitter app by modifying the TWITTER_KEY and TWITTER_SECRET in config/environments/development.rb.
 - Run the rake tast 'initialize_canned_tweets' to populate the CannedTweet table with some hilarious canned Doghouse enter and exit tweets.

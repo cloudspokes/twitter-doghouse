@@ -1,3 +1,4 @@
+<%= content_tag :span, nil, id: 'current_user', data: {id: @current_user.id} %>
 <%= render 'form' %>
 <%= content_tag :h2, 'Your DogHouse', id: 'go_to_doghouse' %>
 <%= content_tag :div, render(partial: 'doghouse'), id: 'doghouse' %>

@@ -6,7 +6,6 @@ class DoghousesController < ApplicationController
   def index
     if current_user
       @new_doghouse = Doghouse.new duration_minutes_multiplier: 1
-      @following_users = current_user.get_following_users
       @canned_enter_tweets = CannedTweet.enter_tweets
       @canned_exit_tweets = CannedTweet.exit_tweets
       @active_doghouses = get_active_doghouses

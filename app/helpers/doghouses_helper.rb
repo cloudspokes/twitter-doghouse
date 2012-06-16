@@ -1,10 +1,5 @@
 module DoghousesHelper
   
-  # Collection of people user follows on twitter for select box
-  def following_users_collection
-    @following_users.map {|f| ["@#{f.screen_name}", f.screen_name]}
-  end
-  
   # Collection of possible doghouse duration types for radio buttons
   def duration_minutes_multiplier_collection
     [['Minutes', 1], ['Hours', MINUTES_IN_HOUR], ['Days', MINUTES_IN_DAY]]

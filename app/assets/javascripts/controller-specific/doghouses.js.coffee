@@ -2,6 +2,7 @@ chars_remaining_suffix = 'characters remaining'
 tweet_pre_length = 0
 dialog_tweet_pre_length = 0
 MAX_TWEET_CHARS = 140
+MAX_SCREEN_NAMES_PER_QUERY = 100 # Enforced by twitter API
 
 # Appropriately show or hide the textarea for custom enter and exit tweets
 hide_or_show_custom_tweets = ->
@@ -74,11 +75,17 @@ window.dialog_initializers = ->
   $('form.dialog-form').live "ajax:beforeSend", (event,xhr,status) ->
     $('.doghouse-dialog').modal 'hide'
 
+# Put the following screen names in the selector for the user to put in the doghouse
+put_screen_names_in_select = (screen_names) ->
+  $('#doghouse_screen_name').select2 {placeholder: 'Select User'}
+  for screen_name in screen_names
+    $('#doghouse_screen_name').append("<option value='#{screen_name}'>@#{screen_name}</option>")
+
 # On page loaded function
 $ ->
   # Initialize the select2 plugin for the select user to doghouse selector
   $('#doghouse_screen_name').select2 {
-    placeholder: "Select User"
+    placeholder: "Loading Following..."
   }
   
   # Callback when user to put in doghouse changes
@@ -123,4 +130,13 @@ $ ->
   # Other initializations
   set_countdowns()
   dialog_initializers()
+  
+  # Fill the screen name select box with people the user follows on twitter
+  jQuery.getJSON '/get_following_ids', {user_id: $('#current_user').attr('data-id')}, (following_ids) ->
+    index = 0
+    while index < following_ids.length
+      jQuery.getJSON '/get_screen_names', {ids: following_ids[index...(index+MAX_SCREEN_NAMES_PER_QUERY)]}, (screen_names) ->
+        put_screen_names_in_select screen_names
+      index += MAX_SCREEN_NAMES_PER_QUERY
+  
   
