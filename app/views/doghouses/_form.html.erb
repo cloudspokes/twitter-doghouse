@@ -2,7 +2,7 @@
   <%= content_tag :div, class: 'span10' do %>
     <%= simple_form_for(@new_doghouse, html: {class: 'form-horizontal'}, remote: true) do |f| %>
       <%= content_tag :fieldset do %>
-        <%= content_tag :legend, "Add a person to the DogHouse #{link_to content_tag(:small, ' View the DogHouse', class: 'icon-circle-arrow-down pull-right'), '#go_to_doghouse'}".html_safe %>
+        <%= content_tag :legend, "Add a person to your DogHouse #{link_to content_tag(:small, ' View Your DogHouse', class: 'icon-circle-arrow-down pull-right'), '#go_to_doghouse'}".html_safe %>
         <%= f.input :screen_name, collection: following_users_collection, allow_blank: false, label: 'Twitter Username' %>
         <%= f.input :duration_minutes, label: 'For How Long?', input_html: {min: '1'} %>
         <%= f.input :duration_minutes_multiplier, collection: duration_minutes_multiplier_collection, label: false, include_blank: false, as: :radio_buttons %>

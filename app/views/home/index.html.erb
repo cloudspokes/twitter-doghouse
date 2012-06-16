@@ -32,7 +32,7 @@
     <% end %>
     <%= content_tag :div, class: 'span4' do %>
       <%= content_tag :h3, "#{content_tag :i, nil, class: 'icon-hand-down icon-large'} Add to DogHouse".html_safe %>
-      <%= content_tag :p, 'Specify the length of the punishment and set (optional) tweets to be sent to the user when inserting and releasing from the DogHouse.' %>
+      <%= content_tag :p, 'Specify the length of the punishment and set (optional) tweets to be sent to the user when inserting and releasing from your DogHouse.' %>
     <% end %>
     <%= content_tag :div, 'span4' do %>
       <%= content_tag :h3, "#{content_tag :i, nil, class: 'icon-undo icon-large'} Automatically release from DogHouse".html_safe %>
@@ -49,9 +49,9 @@
       <%= content_tag :div, class: 'well' do %>
         <%= content_tag :p, "@TwitDoghouse #{content_tag :code, 'username'} #{content_tag :code, 'timeframe'} #{content_tag :code, 'tweet'}".html_safe %>
       <% end %>
-      <%= content_tag :p, "#{content_tag :code, 'username'} = the person that you want to add to the DogHouse (without the @ symbol!)".html_safe %>
+      <%= content_tag :p, "#{content_tag :code, 'username'} = the person that you want to add to your DogHouse (without the @ symbol!)".html_safe %>
       <%= content_tag :p do %>
-        <%= content_tag :span, "#{content_tag :code, 'timeframe'} = for how long do you want to keep the person in the DogHouse".html_safe %>
+        <%= content_tag :span, "#{content_tag :code, 'timeframe'} = for how long do you want to keep the person in your DogHouse".html_safe %>
         <%= content_tag :ul, class: 'unstyled' do %>
           <%= content_tag :li, "#{content_tag :code, '#m'} number of minutes".html_safe %>
           <%= content_tag :li, "#{content_tag :code, '#h'} number of hours".html_safe %>
