@@ -15,6 +15,7 @@ class Doghouse < ActiveRecord::Base
   attr_accessible :screen_name, :duration_minutes, :request_from_twitter_id, :enter_tweet, as: :safe_code
   
   before_create :multiply_duration_minutes, if: :duration_minutes_multiplier
+  before_create :set_profile_image
   before_save :handle_canned_tweets
   after_create :enter_doghouse_actions
   after_save :update_job, on: :update, unless: :is_released
@@ -22,6 +23,15 @@ class Doghouse < ActiveRecord::Base
   
   def release_date_time
     created_at + duration_minutes.minutes
+  end
+  
+  def release_now!
+    update_attribute(:is_released, true)
+    Delayed::Backend::ActiveRecord::Job.find(job_id).update_attribute(:run_at,  Time.now)
+  end
+  
+  def exit_tweet_full
+    "@#{screen_name} #{exit_tweet}"
   end
   
   private
@@ -99,5 +109,9 @@ class Doghouse < ActiveRecord::Base
           self.exit_tweet = CannedTweet.find(canned_exit_tweet_id).text
         end
       end
+    end
+    
+    def set_profile_image
+      self.profile_image = Twitter.profile_image screen_name
     end
 end

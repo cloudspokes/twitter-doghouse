@@ -1,6 +1,8 @@
 TwitterDoghouse::Application.routes.draw do
   
-  resources :doghouses, except: [:new, :edit, :show]
+  resources :doghouses, except: [:new, :edit, :show] do
+    post :release, on: :member 
+  end
   root :to => "doghouses#index"
 
   match "/auth/:provider/callback" => "sessions#create"

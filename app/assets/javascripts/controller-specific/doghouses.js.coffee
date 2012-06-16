@@ -75,6 +75,7 @@ $ ->
     set_previews()
   set_enabled_disabled_submit()
   
-  $("form#new_doghouse").live "ajax:beforeSend", (event,xhr,status) ->
+  $('form#new_doghouse').live "ajax:beforeSend", (event,xhr,status) ->
     reset_new_doghouse_form()
+    $('#create_doghouse_submit').button('loading')
   

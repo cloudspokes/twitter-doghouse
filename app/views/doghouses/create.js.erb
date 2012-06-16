@@ -1,1 +1,7 @@
-alert("ERROR: <%= @error %>");
+<% if @error %>
+  alert('There was an error adding this person to your doghouse.');
+<% else %>
+  $('#create_doghouse_submit').val('<%= ADD_TO_DOGHOUSE_BUTTON_TEXT %>');
+  $('#doghouse').html("<%= j render(partial: 'doghouse_table') %>");
+  window.formatDates();
+<% end %>

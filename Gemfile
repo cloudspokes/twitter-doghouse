@@ -15,6 +15,7 @@ gem "select2-rails", "~> 0.0.4"
 gem "delayed_job_active_record", "~> 0.3.2"
 gem "hirefireapp", "~> 0.0.8"
 gem "dalli", "~> 2.0.5"
+gem "kaminari", "~> 0.13.0"
 
 group :development do
   gem 'sqlite3'

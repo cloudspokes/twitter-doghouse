@@ -9,7 +9,7 @@
         <%= render partial: 'tweet_row', locals: {type: CannedTweet::ENTER_TYPE, f: f, label: 'Tweet to send when inserting in DogHouse'} %>
         <%= render partial: 'tweet_row', locals: {type: CannedTweet::EXIT_TYPE, f: f, label: 'Tweet to send when releasing from DogHouse'} %>
       <% end %>
-      <%= f.button :submit, 'Add to DogHouse', id: 'create_doghouse_submit' %>
+      <%= f.button :submit, ADD_TO_DOGHOUSE_BUTTON_TEXT, id: 'create_doghouse_submit', data: {loading_text: 'Adding to DogHouse...'} %>
     <% end %>
   <% end %>
 <% end %>

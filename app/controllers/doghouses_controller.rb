@@ -7,13 +7,14 @@ class DoghousesController < ApplicationController
       @following_users = current_user.get_following_users
       @canned_enter_tweets = CannedTweet.enter_tweets
       @canned_exit_tweets = CannedTweet.exit_tweets
-      @doghouses = current_user.doghouses
+      @active_doghouses = get_active_doghouses
     end
   end
 
   def create
     @doghouse = current_user.doghouses.build(params[:doghouse])
     @error = true unless @doghouse.save
+    @active_doghouses = get_active_doghouses
     respond_to do |format|
       format.js
     end
@@ -29,8 +30,24 @@ class DoghousesController < ApplicationController
   end
 
   def destroy
-    @doghouse = Doghouse.find(params[:id])
-    @doghouse.destroy
-    redirect_to doghouses_url
+    Doghouse.find(params[:id]).destroy
+    @active_doghouses = get_active_doghouses
+    respond_to do |format|
+      format.js
+    end
   end
+  
+  def release
+    Doghouse.find(params[:id]).release_now!
+    @active_doghouses = get_active_doghouses
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  private
+  
+    def get_active_doghouses
+      current_user.active_doghouses.page(params[:page]).per(DOGHOUSES_PER_PAGE)
+    end
 end

@@ -1,13 +1,15 @@
 <%= content_tag :div, class: 'row' do %>
   <%= content_tag :div, class: 'span5' do %>
-    <%= f.input "canned_#{type}_tweet_id", collection: canned_tweets_collection(type == CannedTweet::ENTER_TYPE ? @canned_enter_tweets : @canned_exit_tweets), include_blank: false, label: label, input_html: {class: 'canned-tweet-id'} %>
+    <%= f.input "canned_#{type}_tweet_id", include_blank: false, label: label do %>
+      <%= f.select "canned_#{type}_tweet_id", canned_tweets_collection(type == CannedTweet::ENTER_TYPE ? @canned_enter_tweets : @canned_exit_tweets), {}, class: 'canned-tweet-id' %>
+    <% end %>
     <%= f.input "#{type}_tweet", hint: '', hint_html: {class: 'tweet_hint'}, input_html: {class: 'tweet_text input-xlarge', rows: TEXT_AREA_ROWS}, as: :text, label: false %>
   <% end %>
   <%= content_tag :div, class: 'span5' do %>
     <%= content_tag :div, id: "#{type}_tweet_preview" do %>
       <%= content_tag :h3, content_tag(:small, 'Tweet Preview') %>
       <%= content_tag :div, class: 'tweet-preview' do %>
-        <%= image_tag @current_user.image, class: 'tweeterImage' %>
+        <%= image_tag @current_user.image, class: 'twitter-image' %>
         <%= content_tag :div, class: 'tweet-preview-header' do %>
           <%= content_tag :span, @current_user.name, class: 'username' %>
           <%= content_tag :span, "@#{@current_user.nickname}", class: 'nickname' %>

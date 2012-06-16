@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   MAX_QUERY_LENGTH = 100
   
   has_many :doghouses, dependent: :destroy, order: 'created_at desc'
+  has_many :active_doghouses, class_name: 'Doghouse', conditions: ["is_released IS NULL"], order: 'created_at desc'
   has_many :request_from_twitters, dependent: :destroy
   
   def self.create_with_omniauth(auth)

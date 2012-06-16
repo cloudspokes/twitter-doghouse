@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120615014607) do
+ActiveRecord::Schema.define(:version => 20120615212923) do
 
   create_table "canned_tweets", :force => true do |t|
     t.string   "description"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20120615014607) do
     t.string   "enter_tweet"
     t.string   "exit_tweet"
     t.integer  "request_from_twitter_id"
+    t.string   "profile_image"
   end
 
   add_index "doghouses", ["request_from_twitter_id"], :name => "index_doghouses_on_request_from_twitter_id"
