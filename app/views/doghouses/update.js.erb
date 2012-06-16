@@ -1,7 +1,8 @@
 <% if @error %>
   alert('There was an error editing this DogHouse entry.');
 <% else %>
-  $('#doghouse').html("<%= j render(partial: 'doghouse_table') %>");
+  $('#doghouse').html("<%= j render(partial: 'doghouse') %>");
   window.formatDates();
   window.set_countdowns();
+  window.dialog_initializers();
 <% end %>

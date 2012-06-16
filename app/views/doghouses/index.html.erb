@@ -1,6 +1,3 @@
 <%= render 'form' %>
 <%= content_tag :h2, 'Existing users in your DogHouse' %>
-<%= content_tag :div, render('doghouse_table'), id: 'doghouse' %>
-<% for doghouse in @active_doghouses %>
-  <%= content_tag :div, render(partial: 'dialog', locals: { doghouse: doghouse }), class: 'modal hide fade in doghouse-dialog', id: "doghouse#{doghouse.id}", data: {tweet_pre_length: doghouse.screen_name.length + 2} %>
-<% end %>
+<%= content_tag :div, render(partial: 'doghouse'), id: 'doghouse' %>

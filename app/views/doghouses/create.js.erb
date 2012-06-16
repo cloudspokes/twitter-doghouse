@@ -2,7 +2,8 @@
   alert('There was an error adding this person to your DogHouse.');
 <% else %>
   $('#create_doghouse_submit').val('Add to DogHouse');
-  $('#doghouse').html("<%= j render(partial: 'doghouse_table') %>");
+  $('#doghouse').html("<%= j render(partial: 'doghouse') %>");
   window.formatDates();
   window.set_countdowns();
+  window.dialog_initializers();
 <% end %>

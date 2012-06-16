@@ -10,15 +10,16 @@ class Doghouse < ActiveRecord::Base
   validates :duration_minutes_multiplier, numericality: {greater_than: 0 }, allow_blank: true
   validate :tweet_lengths_below_max
   
-  attr_accessor :duration_minutes_multiplier, :canned_enter_tweet_id, :canned_exit_tweet_id
-  attr_accessible :screen_name, :duration_minutes, :enter_tweet, :exit_tweet, :duration_minutes_multiplier, :canned_enter_tweet_id, :canned_exit_tweet_id
+  attr_accessor :duration_minutes_multiplier, :canned_enter_tweet_id, :canned_exit_tweet_id, :expires_in_minutes, :expires_in_hours, :expires_in_days
+  attr_accessible :screen_name, :duration_minutes, :enter_tweet, :exit_tweet, :duration_minutes_multiplier, :canned_enter_tweet_id, :canned_exit_tweet_id, :expires_in_minutes, :expires_in_hours, :expires_in_days
   attr_accessible :screen_name, :duration_minutes, :request_from_twitter_id, :enter_tweet, as: :safe_code
   
   before_create :multiply_duration_minutes, if: :duration_minutes_multiplier
   before_create :set_profile_image
   before_save :handle_canned_tweets
   after_create :enter_doghouse_actions
-  after_save :update_job, on: :update, unless: :is_released
+  before_save :update_duration_minutes, on: :update
+  after_save :update_job, on: :update, if: :duration_minutes_changed?
   after_destroy :remove_job, unless: :is_released
   
   def release_date_time
@@ -32,6 +33,19 @@ class Doghouse < ActiveRecord::Base
   
   def exit_tweet_full
     "@#{screen_name} #{exit_tweet}"
+  end
+  
+  def get_expiry
+    expiry_minutes = ((release_date_time - Time.now) / SECONDS_IN_MINUTE).to_i
+    expiry_days = expiry_minutes / MINUTES_IN_DAY
+    expiry_minutes -= expiry_days * MINUTES_IN_DAY
+    expiry_hours = expiry_minutes / MINUTES_IN_HOUR
+    expiry_minutes -= expiry_hours * MINUTES_IN_HOUR
+    {
+      minutes: expiry_minutes,
+      hours: expiry_hours,
+      days: expiry_days
+    }
   end
   
   private
@@ -113,5 +127,11 @@ class Doghouse < ActiveRecord::Base
     
     def set_profile_image
       self.profile_image = Twitter.profile_image screen_name
+    end
+    
+    def update_duration_minutes
+      if expires_in_minutes.present? and expires_in_hours.present? and expires_in_days.present?
+        self.duration_minutes = (Time.now - created_at) / SECONDS_IN_MINUTE + expires_in_minutes.to_i + expires_in_hours.to_i * MINUTES_IN_HOUR + expires_in_days.to_i * MINUTES_IN_DAY
+      end
     end
 end
