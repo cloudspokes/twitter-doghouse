@@ -52,6 +52,17 @@ window.set_countdowns = ->
   $('.countdown').each ->
     $(this).countdown {until: new Date($(this).attr('data-until-time') * 1000), format: 'dHM'}
 
+window.dialog_initializers = ->
+  $('.doghouse-dialog').on 'show', ->
+    dialog_tweet_pre_length = $(this).attr('data-tweet-pre-length')
+    $('.dialog_tweet_text').keyup()
+    $('.dialog_tweet_text').attr('maxlength', MAX_TWEET_CHARS - dialog_tweet_pre_length)
+  $('.dialog_tweet_text').on 'keyup', ->
+    $(this).next().text "#{MAX_TWEET_CHARS - dialog_tweet_pre_length - $(this).val().length} #{chars_remaining_suffix}"
+  $('form.dialog-form').live "ajax:beforeSend", (event,xhr,status) ->
+    $('.doghouse-dialog').modal 'hide'
+
+
 $ ->
   $('#doghouse_screen_name').select2 {
     placeholder: "Select User"
@@ -69,9 +80,6 @@ $ ->
   $('.tweet_text').on 'keyup', ->
     $(this).next().text "#{MAX_TWEET_CHARS - tweet_pre_length - $(this).val().length} #{chars_remaining_suffix}"
     set_previews()
-  
-  $('.dialog_tweet_text').on 'keyup', ->
-    $(this).next().text "#{MAX_TWEET_CHARS - dialog_tweet_pre_length - $(this).val().length} #{chars_remaining_suffix}"
   
   $('#doghouse_duration_minutes').on 'keyup', ->
     set_enabled_disabled_submit()
@@ -91,13 +99,5 @@ $ ->
     $('#create_doghouse_submit').val 'Adding to DogHouse...'
   
   set_countdowns()
-  
-  $('.doghouse-dialog').on 'show', ->
-    dialog_tweet_pre_length = $(this).attr('data-tweet-pre-length')
-    $('.dialog_tweet_text').keyup()
-    $('.dialog_tweet_text').attr('maxlength', MAX_TWEET_CHARS - dialog_tweet_pre_length)
-  
-  $('form.dialog-form').live "ajax:beforeSend", (event,xhr,status) ->
-    $('.doghouse-dialog').modal 'hide'
-    
+  dialog_initializers()
   
