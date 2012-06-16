@@ -3,7 +3,11 @@
     <%= content_tag :div, class: 'span4' do %>
       <%= image_tag 'doghouse.png', class: 'taglineLogo'  %>
       <%= link_to content_tag(:i, ' View on GitHub', class: 'icon-github'), 'https://github.com/dubroe/twitter-doghouse', target: '_blank', class: "btn btn-large #{'center-button' if @current_user}" %>
-      <%= link_to content_tag(:i, ' Sign in with Twitter', class: 'icon-twitter'), "/auth/twitter", class: 'btn btn-large btn-primary' unless @current_user %>
+      <% if @current_user %>
+        <%= link_to content_tag(:i, ' Go to the app', class: 'icon-circle-arrow-right'), app_path, class: 'btn btn-large btn-primary' %>
+      <% else %>
+        <%= link_to content_tag(:i, ' Sign in with Twitter', class: 'icon-twitter'), "/auth/twitter", class: 'btn btn-large btn-primary' %>
+      <% end %>
     <% end %>
     <%= content_tag :div, class: 'span8' do %>
       <%= content_tag :div, class: 'hero-unit' do %>
