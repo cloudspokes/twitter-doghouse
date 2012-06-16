@@ -1,5 +1,7 @@
 class DoghousesController < ApplicationController
-    
+  
+  before_filter :doghouse_belongs_to_user, only: [:update, :destroy, :release]
+  
   def index
     if current_user
       @new_doghouse = Doghouse.new duration_minutes_multiplier: 1
@@ -20,7 +22,6 @@ class DoghousesController < ApplicationController
   end
 
   def update
-    @doghouse = Doghouse.find(params[:id])
     @error = true unless @doghouse.update_attributes(params[:doghouse])
     @active_doghouses = get_active_doghouses
     respond_to do |format|
@@ -29,7 +30,7 @@ class DoghousesController < ApplicationController
   end
 
   def destroy
-    Doghouse.find(params[:id]).destroy
+    @doghouse.destroy
     @active_doghouses = get_active_doghouses
     respond_to do |format|
       format.js
@@ -37,7 +38,7 @@ class DoghousesController < ApplicationController
   end
   
   def release
-    Doghouse.find(params[:id]).release_now!
+    @doghouse.release_now!
     @active_doghouses = get_active_doghouses
     respond_to do |format|
       format.js
@@ -48,5 +49,15 @@ class DoghousesController < ApplicationController
   
     def get_active_doghouses
       current_user.active_doghouses.page(params[:page]).per(DOGHOUSES_PER_PAGE)
+    end
+    
+    def doghouse_belongs_to_user
+      @doghouse = Doghouse.find(params[:id])
+      unless @doghouse.user == current_user
+        @error = true
+        respond_to do |format|
+          format.js
+        end
+      end
     end
 end
