@@ -19,8 +19,8 @@
                 <% end %>
               <% end %>
               <%= content_tag :td, content_tag(:span, doghouse.created_at.to_time.to_i, class: 'utc-date-time') %>
-              <%= content_tag :td, 'COUNTDOWN' %>
-              <%= content_tag :td, doghouse.exit_tweet_full %>
+              <%= content_tag :td, nil, class: 'countdown', data: {until_time: doghouse.release_date_time.to_time.to_i} %>
+              <%= content_tag :td, doghouse.exit_tweet.present? ? doghouse.exit_tweet_full : '' %>
               <%= content_tag :td do %>
                 <%= content_tag :div, class: 'btn-group' do %>
                   <%= link_to 'Edit', '#', class: 'btn' %>

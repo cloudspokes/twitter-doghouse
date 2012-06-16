@@ -11,3 +11,4 @@
 //= require application_custom
 //= require select2
 //= require date
+//= require jquery.countdown.min

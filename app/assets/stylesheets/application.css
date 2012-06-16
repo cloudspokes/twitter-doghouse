@@ -11,4 +11,5 @@
  *= require_self
  *= require application_custom
  *= require select2
+ *= require jquery.countdown
  */

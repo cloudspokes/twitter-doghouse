@@ -47,6 +47,10 @@ reset_new_doghouse_form = ->
   set_previews()
   set_enabled_disabled_submit()
 
+window.set_countdowns = ->
+  $('.countdown').each ->
+    $(this).countdown {until: new Date($(this).attr('data-until-time') * 1000), format: 'dHM'}
+
 $ ->
   $('#doghouse_screen_name').select2 {
     placeholder: "Select User"
@@ -67,6 +71,8 @@ $ ->
   
   $('#doghouse_duration_minutes').on 'keyup', ->
     set_enabled_disabled_submit()
+  $('#doghouse_duration_minutes').on 'click', ->
+    set_enabled_disabled_submit()
   
   hide_or_show_custom_tweets()
   set_previews()
@@ -77,5 +83,8 @@ $ ->
   
   $('form#new_doghouse').live "ajax:beforeSend", (event,xhr,status) ->
     reset_new_doghouse_form()
-    $('#create_doghouse_submit').button('loading')
+    $('#create_doghouse_submit').attr 'disabled', true
+    $('#create_doghouse_submit').val 'Adding to DogHouse...'
+  
+  set_countdowns()
   
