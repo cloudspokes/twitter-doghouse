@@ -1,5 +1,6 @@
 chars_remaining_suffix = 'characters remaining'
 tweet_pre_length = 0
+dialog_tweet_pre_length = 0
 MAX_TWEET_CHARS = 140
 
 hide_or_show_custom_tweets = ->
@@ -69,6 +70,9 @@ $ ->
     $(this).next().text "#{MAX_TWEET_CHARS - tweet_pre_length - $(this).val().length} #{chars_remaining_suffix}"
     set_previews()
   
+  $('.dialog_tweet_text').on 'keyup', ->
+    $(this).next().text "#{MAX_TWEET_CHARS - dialog_tweet_pre_length - $(this).val().length} #{chars_remaining_suffix}"
+  
   $('#doghouse_duration_minutes').on 'keyup', ->
     set_enabled_disabled_submit()
   $('#doghouse_duration_minutes').on 'click', ->
@@ -87,4 +91,13 @@ $ ->
     $('#create_doghouse_submit').val 'Adding to DogHouse...'
   
   set_countdowns()
+  
+  $('.doghouse-dialog').on 'show', ->
+    dialog_tweet_pre_length = $(this).attr('data-tweet-pre-length')
+    $('.dialog_tweet_text').keyup()
+    $('.dialog_tweet_text').attr('maxlength', MAX_TWEET_CHARS - dialog_tweet_pre_length)
+  
+  $('form.dialog-form').live "ajax:beforeSend", (event,xhr,status) ->
+    $('.doghouse-dialog').modal 'hide'
+    
   

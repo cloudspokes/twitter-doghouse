@@ -1,7 +1,6 @@
 <% if @error %>
-  alert('There was an error adding this person to your DogHouse.');
+  alert('There was an error editing this DogHouse entry.');
 <% else %>
-  $('#create_doghouse_submit').val('Add to DogHouse');
   $('#doghouse').html("<%= j render(partial: 'doghouse_table') %>");
   window.formatDates();
   window.set_countdowns();

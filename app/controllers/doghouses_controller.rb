@@ -21,10 +21,10 @@ class DoghousesController < ApplicationController
 
   def update
     @doghouse = Doghouse.find(params[:id])
-    if @doghouse.update_attributes(params[:doghouse])
-      redirect_to @doghouse, notice: 'Doghouse was successfully updated.'
-    else
-      render action: "edit"
+    @error = true unless @doghouse.update_attributes(params[:doghouse])
+    @active_doghouses = get_active_doghouses
+    respond_to do |format|
+      format.js
     end
   end
 

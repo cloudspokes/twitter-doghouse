@@ -1,0 +1,10 @@
+<%= simple_form_for(doghouse, html: {class: 'form-horizontal dialog-form'}, remote: true) do |f| %>
+  <%= content_tag :div, class: 'modal-header' do %>
+    <%= content_tag :a, '&times;'.html_safe, class: 'close', data: {dismiss: 'modal'} %>
+    <%= content_tag :h3, 'Edit DogHouse Entry' %>
+  <% end %>
+  <%= content_tag :div, class: 'modal-body' do %>
+    <%= f.input :exit_tweet, hint: '', hint_html: {class: 'tweet_hint', style: 'text-align:left;'}, input_html: {class: 'dialog_tweet_text input-xlarge', rows: TEXT_AREA_ROWS}, as: :text, label: 'Tweet to send when releasing from DogHouse' %>
+  <% end %>
+  <%= content_tag :div, f.submit('Save Changes', class: 'btn btn-primary'), class: 'modal-footer' %>
+<% end %>
