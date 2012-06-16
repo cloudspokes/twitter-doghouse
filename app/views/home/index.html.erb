@@ -2,12 +2,8 @@
   <%= content_tag :div, class: 'row' do %>
     <%= content_tag :div, class: 'span4' do %>
       <%= image_tag 'doghouse.png', class: 'taglineLogo'  %>
-      <%= content_tag :a, class: 'btn btn-large' do %>
-        <%= content_tag :i, ' View on GitHub', class: 'icon-github' %>
-      <% end %>
-      <%= content_tag :a, class: 'btn btn-large btn-primary' do %>
-        <%= content_tag :i, ' Sign in with Twitter', class: 'icon-twitter' %>
-      <% end %>
+      <%= link_to content_tag(:i, ' View on GitHub', class: 'icon-github'), 'https://github.com/dubroe/twitter-doghouse', target: '_blank', class: "btn btn-large #{'center-button' if @current_user}" %>
+      <%= link_to content_tag(:i, ' Sign in with Twitter', class: 'icon-twitter'), "/auth/twitter", class: 'btn btn-large btn-primary' unless @current_user %>
     <% end %>
     <%= content_tag :div, class: 'span8' do %>
       <%= content_tag :div, class: 'hero-unit' do %>

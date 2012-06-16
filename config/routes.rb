@@ -3,7 +3,8 @@ TwitterDoghouse::Application.routes.draw do
   resources :doghouses, except: [:new, :edit, :show] do
     post :release, on: :member 
   end
-  root :to => "doghouses#index"
+  root :to => "home#index"
+  match 'app' => "doghouses#index", as: :app
 
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", as: :signout

@@ -1,6 +1,5 @@
 class DoghousesController < ApplicationController
-  skip_before_filter :user_authenticated, only: :index
-  
+    
   def index
     if current_user
       @new_doghouse = Doghouse.new duration_minutes_multiplier: 1

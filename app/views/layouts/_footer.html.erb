@@ -1,6 +1,5 @@
 <%= content_tag :footer do %>
-  <hr />
-  <p class="pull-right"><a href="#" data-bitly-type="bitly_hover_card">Back to top</a></p>
-  <p>Programming by <a href="https://github.com/dubroe" target="_blank">Elan Dubrofsky</a>, design and front-end by <a href="http://jure-stern.si/en" target="_blank">Jure Stern</a></p>
-  <p>Built with <a href="http://twitter.com/twitter" target="_blank" data-bitly-type="bitly_hover_card">@twitter</a> and <a href="http://rubyonrails.org/" target="_blank" data-bitly-type="bitly_hover_card">Ruby on Rails</a>.</p>
+  <%= content_tag :hr %>
+  <%= content_tag :p, link_to('Back to top', '#'), class: 'pull-right' %>
+  <%= content_tag :p, "Developed by #{link_to 'Elan Dubrofsky', 'http://www.linkedin.com/pub/elan-dubrofsky/30/243/394', target: '_blank'}, design and front-end by #{link_to 'Jure Stern', 'http://jure-stern.si/en', target: '_blank'}".html_safe %>
 <% end %>
