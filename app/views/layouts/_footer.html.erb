@@ -2,4 +2,8 @@
   <%= content_tag :hr %>
   <%= content_tag :p, link_to('<i class="icon-circle-arrow-up"></i> Back to top'.html_safe, '#'), class: 'pull-right' %>
   <%= content_tag :p, "Developed by #{link_to 'Elan Dubrofsky', 'http://www.linkedin.com/pub/elan-dubrofsky/30/243/394', target: '_blank'}, designed by #{link_to 'Jure Stern', 'http://jure-stern.si/en', target: '_blank'}".html_safe %>
+  <%= content_tag :p, class: 'twitter-follow-button' do %>
+    <a href="https://twitter.com/TwitDoghouse" class="twitter-follow-button" data-show-count="false">Follow @TwitDoghouse</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  <% end %>
 <% end %>

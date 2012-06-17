@@ -47,7 +47,7 @@
     <%= content_tag :div, class: 'span6 twitter-syntax' do %>
       <%= content_tag :h3, 'DogHouse tweet syntax*' %>
       <%= content_tag :div, class: 'well' do %>
-        <%= content_tag :p, "@TwitDoghouse #{content_tag :code, 'username'} #{content_tag :code, 'timeframe'} #{content_tag :code, 'tweet'}".html_safe %>
+        <%= content_tag :p, "@TwitDoghouse #{content_tag :code, 'username'} #{content_tag :code, 'timeframe'} #{content_tag :code, 'tweet message'}".html_safe %>
       <% end %>
       <%= content_tag :p, "#{content_tag :code, 'username'} = the person that you want to add to your DogHouse (without the @ symbol!)".html_safe %>
       <%= content_tag :p do %>
@@ -58,7 +58,7 @@
           <%= content_tag :li, "#{content_tag :code, '#d'} number of days".html_safe %>
         <% end %>
       <% end %>
-      <%= content_tag :p, "#{content_tag :code, 'tweet'} = optional tweet to send to the user telling them that you've put them in your DogHouse".html_safe %>
+      <%= content_tag :p, "#{content_tag :code, 'tweet message'} = optional tweet to send to the user telling them that you've put them in your DogHouse".html_safe %>
       <%= content_tag :span, '* This feature requires you to sign in once before you can use it.', class: 'label pull-right' %>
     <% end %>
     <%= content_tag :div, class: 'span4' do %>
