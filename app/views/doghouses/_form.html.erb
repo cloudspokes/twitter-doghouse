@@ -1,5 +1,5 @@
 <%= content_tag :div, class: 'row' do %>
-  <%= content_tag :div, class: 'span10' do %>
+  <%= content_tag :div, class: 'span12' do %>
     <%= simple_form_for(@new_doghouse, html: {class: 'form-horizontal'}, remote: true) do |f| %>
       <%= content_tag :fieldset do %>
         <%= content_tag :legend, "Add a person to your DogHouse #{link_to content_tag(:small, ' View Your DogHouse', class: 'icon-circle-arrow-down pull-right'), '#go_to_doghouse'}".html_safe %>
