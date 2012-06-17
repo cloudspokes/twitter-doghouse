@@ -1,7 +1,33 @@
+@import "twitter/bootstrap/mixins";
+
 .taglineLogo {
   display: block;
   margin: 0 auto;
   margin-bottom: 20px;
+}
+
+.hero-unit {
+  padding: 40px 60px 30px 60px;
+  
+  h1,
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+.social-links {
+  text-align: center;
+  
+  .label {
+    padding: 5px 8px 6px;
+    color: #fff;
+    .transition(all .3s linear);
+    
+    &:hover { 
+      background-color: #616161;
+      .transition(all .3s linear);
+    }
+  }
 }
 
 .marketing-heading {
