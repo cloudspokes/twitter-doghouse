@@ -7,7 +7,7 @@
   <% end %>
   <%= content_tag :div, class: 'span6 tweet-preview-form' do %>
     <%= content_tag :div, id: "#{type}_tweet_preview" do %>
-      <%= content_tag :h3, content_tag(:small, 'Tweet Preview') %>
+      <%= content_tag :h3, content_tag(:small, "#{type == CannedTweet::ENTER_TYPE ? 'Insert' : 'Release'} Tweet Preview") %>
       <%= content_tag :div, class: 'tweet-preview' do %>
         <%= image_tag @current_user.image, class: 'twitter-image' %>
         <%= content_tag :div, class: 'tweet-preview-header' do %>

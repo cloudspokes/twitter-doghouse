@@ -9,7 +9,7 @@
           <%= content_tag :li, link_to('Go to the app', app_path) if controller_name == 'home' and @current_user %>
           <% if @current_user %>
             <%= content_tag :li, nil, class: 'divider-vertical' %>
-            <%= content_tag :li, link_to("#{image_tag @current_user.image, width: '18', class: 'navbar-image'} #{@current_user.name}".html_safe, "http://www.twitter.com/#{@current_user.nickname}", target: '_blank') %>
+            <%= content_tag :li, content_tag(:span, "#{image_tag @current_user.image, width: '18', class: 'navbar-image'} #{@current_user.name}".html_safe) %>
             <%= content_tag :li, link_to("#{content_tag :i, nil, class: 'icon-signout'} Log Out".html_safe, signout_path) %>
           <% else %>
             <%= content_tag :li, nil, class: 'divider-vertical' %>
