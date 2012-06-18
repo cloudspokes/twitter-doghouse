@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :user_authenticated
+  before_filter :user_authenticated, except: :test_exception_notification
   
   # Get the current logged in user and set the @current_user variable if not set yet
   def current_user
