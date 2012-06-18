@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
   
   # This action is hit if user hits cancel on Twitter oauth page
   def failure
-    redirect_to root_url, alert: 'Twitter authentication not granted'
+    redirect_to root_url, alert: 'Twitter authentication denied.'
   end
 
   # Log out
