@@ -3,9 +3,9 @@
     <% if @active_doghouses.any? %>
       <%= content_tag :table, class: 'table table-striped doghouse-table' do %>
         <%= content_tag :thead do %>
-          <%= content_tag :th, 'Twitter Username' %>
-          <%= content_tag :th, 'Created On' %>
-          <%= content_tag :th, 'Expires In' %>
+          <%= content_tag :th, 'Twitter Username', class: 'twitter-username-column' %>
+          <%= content_tag :th, 'Created', class: 'created-on-column' %>
+          <%= content_tag :th, 'Expires' %>
           <%= content_tag :th, 'Release Tweet' %>
           <%= content_tag :th, '' %>
         <% end %>
