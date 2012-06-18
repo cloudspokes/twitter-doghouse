@@ -46,18 +46,19 @@
   }
 }
 
-@media (max-width: 979px) and (min-width: 768px) {
+@media (min-width: 767px) and (max-width: 1024px) {
   .taglineLogo {
     width: 215px;
   }
   .cta-box {
-    .primary-cta {
-      margin-bottom: 10px;
+    
+    .primary-cta-sign-twitter {
+      margin-bottom: 5px;
     }
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .navbar {
     margin-left: -20px;
     margin-right: -20px;
@@ -72,11 +73,11 @@
     .clearfix();
     
     .taglineLogo {
-      width: 100px;
+      width: 215px;
       float: left;
     }
     .primary-cta {
-      margin-bottom: 0;
+      margin-bottom: 5px;
     }
   }
   .marketing-heading {
@@ -100,6 +101,15 @@
       line-height: 20px;
     }
   }
+  .cta-box {
+    
+    .primary-cta {
+      margin-bottom: 0;
+    }
+    .taglineLogo {
+      width: 100px;
+    }
+  }
   .social-links {
     
     .label {
@@ -113,8 +123,9 @@
 
 @media (max-width: 320px) {
   .cta-box {
-    .primary-cta {
-      margin-bottom: 10px;
+    .primary-cta,
+    .primary-cta-sign-twitter {
+      margin-bottom: 5px;
     }
   }
 }
