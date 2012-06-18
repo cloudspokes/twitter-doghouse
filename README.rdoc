@@ -6,18 +6,20 @@ Social networking with Twitter is great except when the people you follow pollut
 
 Features:
 
-  - List of following users loaded for you to choose from
-  - Select user to add to your DogHouse
-  - Set optional insert and release from DogHouse tweets to be sent to the Tweeter you are punishing
-  - View and edit duration and release tweet for all users currently in the DogHouse
-  - Send special Tweet to @TwitDoghouse to have us put users in your DogHouse AUTOMATICALLY
-  - Fully responsive. Looks great on mobile devices
-  - Killer logo!
+- List of following users loaded for you to choose from
+- Select user to add to your DogHouse
+- Set optional insert and release from DogHouse tweets to be sent to the Tweeter you are punishing
+- View and edit duration and release tweet for all users currently in the DogHouse
+- Send special Tweet to @TwitDoghouse to have us put users in your DogHouse AUTOMATICALLY
+- Fully responsive. Looks great on mobile devices
+- Killer logo!
 
 Deployment instructions:
 
 - Runs on Rails 3.2.2 and Ruby 1.9.3
 - Uses Twitter Bootstrap and Font Awesome for the UI.
+- There is a rake task that initiates the check for "Put in DogHouse" requests sent to the @TwitDoghouse account called 'handle_twitter_requests' in lib/tasks/scheduler.rake.
+  - In production, Heroku scheduler executes this task every 10 minutes. In development you need to run this task manually in order to test it out.
 - The files in vendor/assets are not my code. They are jquery plugins that I downloaded.
 - After cloning the project don't forget to run 'bundle install' and 'rake db:migrate'.
 - This app uses Delayed Job to run many asynchronous tasks. 
