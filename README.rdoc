@@ -14,6 +14,11 @@ Features:
 - Fully responsive. Looks great on mobile devices
 - Killer logo!
 
+Production app:
+
+- This app is currently being hosted by Heroku at http://twitter-doghouse.herokuapp.com/.
+  - If the live app fails, please check status.heroku.com to make sure that it's not because the server is down.
+
 Deployment instructions:
 
 - Runs on Rails 3.2.2 and Ruby 1.9.3
