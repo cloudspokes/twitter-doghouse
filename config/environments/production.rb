@@ -70,4 +70,19 @@ TwitterDoghouse::Application.configure do
   
   TWITTER_KEY = ENV['TWITTER_KEY']
   TWITTER_SECRET = ENV['TWITTER_SECRET']
+  
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com'
+  }
+  ActionMailer::Base.delivery_method = :smtp
+  
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => "[DogHouse Error] ",
+    :sender_address => %{"Elan Dubrofsky" <elan.dubrofsky@gmail.com>},
+    :exception_recipients => %w{elan.dubrofsky@gmail.com}
 end

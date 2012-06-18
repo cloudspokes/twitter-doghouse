@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
   end
   
+  # A route to generate an exception. Used for testing the except_notification gem
+  def test_exception_notification
+    raise 'Testing, 1 2 3.'
+  end
+  
   private
     
     # Filter that goes to root page if user if not logged in

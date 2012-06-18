@@ -46,6 +46,8 @@ GEM
       delayed_job (~> 3.0.0)
     erubis (2.7.0)
     eventmachine (0.12.10)
+    exception_notification (2.6.1)
+      actionmailer (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     faraday (0.8.1)
@@ -160,6 +162,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   delayed_job_active_record (~> 0.3.2)
+  exception_notification (~> 2.6.1)
   hirefireapp (~> 0.0.8)
   jquery-rails
   kaminari (~> 0.13.0)
