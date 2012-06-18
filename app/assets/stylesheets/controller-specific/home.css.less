@@ -5,6 +5,11 @@
   margin: 0 auto;
   margin-bottom: 20px;
 }
+.cta-box {
+  .main-cta {
+    text-align: center;
+  }
+}
 
 .hero-unit {
   padding: 40px 60px 30px 60px;
@@ -35,11 +40,81 @@
   h1 {
     margin-bottom: 20px;
     font-size: 40px;
+    line-height: 45px;
     font-weight: 300;
     text-align: center;
   }
 }
 
-.center-button {
-  margin: 0 auto;
+@media (max-width: 979px) and (min-width: 768px) {
+  .taglineLogo {
+    width: 215px;
+  }
+  .cta-box {
+    .center-button {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .hero-unit {
+    
+    h1 {
+      font-size: 26px;
+    }
+  }
+  .cta-box {
+    .clearfix();
+    
+    .taglineLogo {
+      width: 100px;
+      float: left;
+    }
+    .center-button {
+      margin-bottom: 0;
+    }
+  }
+  .marketing-heading {
+
+    h1 {
+      font-size: 28px;
+      line-height: 32px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-unit {
+    padding: 20px 30px 15px 30px;
+    
+    h1 {
+      font-size: 26px;
+    }
+    p {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+  .social-links {
+    
+    .label {
+      
+      i {
+      margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .cta-box {
+    .center-button {
+      margin-bottom: 10px;
+    }
+  }
 }
