@@ -77,9 +77,10 @@ window.dialog_initializers = ->
 
 # Enable twitter bootstrap popover for view doghouse exit tweet
 window.initialize_popovers = ->
-  $('a.exit-tweet-link').popover()
+  $('a.exit-tweet-link').popover().click ->
+    jQuery(document).one "click", ->
+      $('a.exit-tweet-link').popover('hide')
   $('a.exit-tweet-link').on 'click', (event) ->
-    $('a.exit-tweet-link').popover 'hide'
     event.preventDefault()
 
 # Put the following screen names in the selector for the user to put in the doghouse
