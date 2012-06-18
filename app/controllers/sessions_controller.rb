@@ -11,6 +11,11 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     redirect_to app_path
   end
+  
+  # This action is hit if user hits cancel on Twitter oauth page
+  def failure
+    redirect_to root_url, alert: 'Twitter authentication not granted'
+  end
 
   # Log out
   def destroy

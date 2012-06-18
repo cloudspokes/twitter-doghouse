@@ -9,6 +9,7 @@ TwitterDoghouse::Application.routes.draw do
   match 'get_screen_names' => "users#get_screen_names", as: :get_screen_names
 
   match "/auth/:provider/callback" => "sessions#create"
+  match "/auth/failure" => "sessions#failure"
   match "/signout" => "sessions#destroy", as: :signout
   # The priority is based upon order of creation:
   # first created -> highest priority.
