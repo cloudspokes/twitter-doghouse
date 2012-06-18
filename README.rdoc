@@ -4,6 +4,16 @@ Submission for the following CloudSpokes Challenge: http://www.cloudspokes.com/c
 
 Social networking with Twitter is great except when the people you follow pollute your feed with sponsored spam, political flamewars, and live-tweets of some show or event you don't care about. With this app you can unfollow them, tell them they are being annoying, and re-follow them after a specified amount of time.
 
+Features:
+
+  - List of following users loaded for you to choose from
+  - Select user to add to your DogHouse
+  - Set optional insert and release from DogHouse tweets to be sent to the Tweeter you are punishing
+  - View and edit duration and release tweet for all users currently in the DogHouse
+  - Send special Tweet to @TwitDoghouse to have us put users in your DogHouse AUTOMATICALLY
+  - Fully responsive. Looks great on mobile devices
+  - Killer logo!
+
 Deployment instructions:
 
 - Runs on Rails 3.2.2 and Ruby 1.9.3
