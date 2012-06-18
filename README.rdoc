@@ -1,10 +1,10 @@
-#Twitter DogHouse App
+= Twitter DogHouse App
 
 Submission for the following CloudSpokes Challenge: http://www.cloudspokes.com/challenges/1540
 
 Social networking with Twitter is great except when the people you follow pollute your feed with sponsored spam, political flamewars, and live-tweets of some show or event you don't care about. With this app you can unfollow them, tell them they are being annoying, and re-follow them after a specified amount of time.
 
-##Features
+== Features
 
 - List of following users loaded for you to choose from
 - Select user to add to your DogHouse
@@ -14,12 +14,12 @@ Social networking with Twitter is great except when the people you follow pollut
 - Fully responsive. Looks great on mobile devices
 - Killer logo!
 
-##Production app:
+== Production app:
 
 - This app is currently being hosted by Heroku at http://twitter-doghouse.herokuapp.com/.
   - If the live app fails, please check status.heroku.com to make sure that it's not because the server is down.
 
-##Deployment instructions:
+== Deployment instructions:
 
 - Runs on Rails 3.2.2 and Ruby 1.9.3
 - Uses Twitter Bootstrap and Font Awesome for the UI.
