@@ -1,73 +1,73 @@
-<%= content_tag :div, class: '' do %>
-  <%= content_tag :div, class: 'row' do %>
-    <%= content_tag :div, class: 'span4' do %>
-      <%= image_tag 'doghouse.png', class: 'taglineLogo'  %>
+<%= content_tag :div, class: 'row' do %>
+  <%= content_tag :div, class: 'span4 cta-box' do %>
+    <%= image_tag 'doghouse.png', class: 'taglineLogo'  %>
+    <%= content_tag :div, class: 'main-cta' do %>
       <%= link_to content_tag(:i, ' View on GitHub', class: 'icon-github'), 'https://github.com/dubroe/twitter-doghouse', target: '_blank', class: "btn btn-large #{'center-button' if @current_user}" %>
       <% if @current_user %>
         <%= link_to content_tag(:i, ' Go to the app', class: 'icon-circle-arrow-right'), app_path, class: 'btn btn-large btn-primary' %>
       <% else %>
-        <%= link_to content_tag(:i, ' Sign in with Twitter', class: 'icon-twitter'), "/auth/twitter", class: 'btn btn-large btn-primary' %>
-      <% end %>
-    <% end %>
-    <%= content_tag :div, class: 'span8' do %>
-      <%= content_tag :div, class: 'hero-unit' do %>
-        <%= content_tag :h1, 'Twitter DogHouse' %>
-        <%= content_tag :p, "Social networking with Twitter is great except when the people you follow pollute your feed with sponsored spam, political flamewars, and live-tweets of some show or event you don't care about. With this app you can #{content_tag :strong, 'unfollow'} them, tell them they are being annoying, and #{content_tag :strong, 're-follow them after a specified amount of time.'}".html_safe %>
-        <%= content_tag :p do %>
-          <%= link_to 'Watch', 'https://github.com/dubroe/twitter-doghouse/toggle_watch', target: '_blank' %> 
-          <%= link_to 'Fork', 'https://github.com/dubroe/twitter-doghouse/fork_select', target: '_blank' %>
-          <%= link_to 'Follow Us On Twitter', 'http://www.twitter.com/TwitDoghouse', target: '_blank' %>
-        <% end %>
+        <%= link_to content_tag(:i, ' Sign in with Twitter', class: 'icon-twitter'), "/auth/twitter", class: 'btn btn-large btn-info' %>
       <% end %>
     <% end %>
   <% end %>
-  <%= content_tag :div, id: 'howdoeswork', class: 'row' do %>
-    <%= content_tag :div, class: 'marketing-heading' do %>
-      <%= content_tag :h1, 'How does it work' %>
-      <%= content_tag :hr %>
-    <% end %>
-    <%= content_tag :div, class: 'span4' do %>
-      <%= content_tag :h3, "#{content_tag :i, nil, class: 'icon-hand-up icon-large'} Select the user".html_safe %>
-      <%= content_tag :p, 'Upon signing in with Twitter, you can search the people you follow and choose someone to put in your DogHouse.' %>
-    <% end %>
-    <%= content_tag :div, class: 'span4' do %>
-      <%= content_tag :h3, "#{content_tag :i, nil, class: 'icon-hand-down icon-large'} Add to DogHouse".html_safe %>
-      <%= content_tag :p, 'Specify the length of the punishment and set (optional) tweets to be sent to the user when inserting and releasing from your DogHouse.' %>
-    <% end %>
-    <%= content_tag :div, 'span4' do %>
-      <%= content_tag :h3, "#{content_tag :i, nil, class: 'icon-undo icon-large'} Automatically release from DogHouse".html_safe %>
-      <%= content_tag :p, 'The user will be automatically re-followed after the expiration of the time that you specify.' %>
+  <%= content_tag :div, class: 'span8' do %>
+    <%= content_tag :div, class: 'hero-unit' do %>
+      <%= content_tag :h1, 'Twitter DogHouse' %>
+      <%= content_tag :p, "Social networking with Twitter is great except when the people you follow pollute your feed with sponsored spam, political flamewars, and live-tweets of some show or event you don't care about. With this app you can #{content_tag :strong, 'unfollow'} them, tell them they are being annoying, and #{content_tag :strong, 're-follow them after a specified amount of time.'}".html_safe %>
+      <%= content_tag :p, class: 'social-links' do %>
+        <%= link_to content_tag(:i, ' Watch', class: 'icon-github'), 'https://github.com/dubroe/twitter-doghouse/toggle_watch', target: '_blank', class: 'label' %>
+         <%= link_to content_tag(:i, ' Fork', class: 'icon-github'), 'https://github.com/dubroe/twitter-doghouse/fork_select', target: '_blank', class: 'label' %>
+         <%= link_to content_tag(:i, ' Follow @TwitDoghouse', class: 'icon-twitter'), 'https://twitter.com/TwitDoghouse', target: '_blank', class: 'label' %>
+      <% end %>
     <% end %>
   <% end %>
-  <%= content_tag :div, id: 'twittersyntax', class: 'row' do %>
-    <%= content_tag :div, class: 'marketing-heading' do %>
-      <%= content_tag :h1, 'Add To Your DogHouse Right Within Twitter' %>
-      <%= content_tag :hr %>
+<% end %>
+<%= content_tag :div, id: 'howdoeswork', class: 'row' do %>
+  <%= content_tag :div, class: 'marketing-heading' do %>
+    <%= content_tag :h1, 'How does it work' %>
+    <%= content_tag :hr %>
+  <% end %>
+  <%= content_tag :div, class: 'span4' do %>
+    <%= content_tag :h3, "#{content_tag :i, nil, class: 'icon-hand-up icon-large'} Select the user".html_safe %>
+    <%= content_tag :p, 'Upon signing in with Twitter, you can search the people you follow and choose someone to put in your DogHouse.' %>
+  <% end %>
+  <%= content_tag :div, class: 'span4' do %>
+    <%= content_tag :h3, "#{content_tag :i, nil, class: 'icon-hand-down icon-large'} Add to DogHouse".html_safe %>
+    <%= content_tag :p, 'Specify the length of the punishment and set (optional) tweets to be sent to the user when inserting and releasing from your DogHouse.' %>
+  <% end %>
+  <%= content_tag :div, 'span4' do %>
+    <%= content_tag :h3, "#{content_tag :i, nil, class: 'icon-undo icon-large'} Automatically release from DogHouse".html_safe %>
+    <%= content_tag :p, 'The user will be automatically re-followed after the expiration of the time that you specify.' %>
+  <% end %>
+<% end %>
+<%= content_tag :div, id: 'twittersyntax', class: 'row' do %>
+  <%= content_tag :div, class: 'marketing-heading span12' do %>
+    <%= content_tag :h1, 'Add To Your DogHouse Right Within Twitter' %>
+    <%= content_tag :hr %>
+  <% end %>
+  <%= content_tag :div, class: 'span6 twitter-syntax' do %>
+    <%= content_tag :h3, 'DogHouse tweet syntax*' %>
+    <%= content_tag :div, class: 'well' do %>
+      <%= content_tag :p, "@TwitDoghouse #{content_tag :code, 'username'} #{content_tag :code, 'timeframe'} #{content_tag :code, 'tweet message'}".html_safe %>
     <% end %>
-    <%= content_tag :div, class: 'span6 twitter-syntax' do %>
-      <%= content_tag :h3, 'DogHouse tweet syntax*' %>
-      <%= content_tag :div, class: 'well' do %>
-        <%= content_tag :p, "@TwitDoghouse #{content_tag :code, 'username'} #{content_tag :code, 'timeframe'} #{content_tag :code, 'tweet'}".html_safe %>
+    <%= content_tag :p, "#{content_tag :code, 'username'} = the person that you want to add to your DogHouse (without the @ symbol!)".html_safe %>
+    <%= content_tag :p do %>
+      <%= content_tag :span, "#{content_tag :code, 'timeframe'} = for how long do you want to keep the person in your DogHouse".html_safe %>
+      <%= content_tag :ul, class: 'unstyled' do %>
+        <%= content_tag :li, "#{content_tag :code, '#m'} number of minutes".html_safe %>
+        <%= content_tag :li, "#{content_tag :code, '#h'} number of hours".html_safe %>
+        <%= content_tag :li, "#{content_tag :code, '#d'} number of days".html_safe %>
       <% end %>
-      <%= content_tag :p, "#{content_tag :code, 'username'} = the person that you want to add to your DogHouse (without the @ symbol!)".html_safe %>
-      <%= content_tag :p do %>
-        <%= content_tag :span, "#{content_tag :code, 'timeframe'} = for how long do you want to keep the person in your DogHouse".html_safe %>
-        <%= content_tag :ul, class: 'unstyled' do %>
-          <%= content_tag :li, "#{content_tag :code, '#m'} number of minutes".html_safe %>
-          <%= content_tag :li, "#{content_tag :code, '#h'} number of hours".html_safe %>
-          <%= content_tag :li, "#{content_tag :code, '#d'} number of days".html_safe %>
-        <% end %>
-      <% end %>
-      <%= content_tag :p, "#{content_tag :code, 'tweet'} = optional tweet to send to the user telling them that you've put them in your DogHouse".html_safe %>
-      <%= content_tag :span, '* This feature requires you to sign in once before you can use it.', class: 'label pull-right' %>
     <% end %>
-    <%= content_tag :div, class: 'span4' do %>
-      <%= content_tag :h3, 'Example:' %>
-      <%= content_tag :p, "@TwitDoghouse JureStern 5d You're going in my doghouse because you are yapping too much." %>
-      <%= content_tag :h3, 'Result:' %>
-      <%= content_tag :p, 'The user JureStern will be unfollowed and the following tweet will be sent from your Twitter account: "@JureStern You\'re going in my doghouse because you are yapping too much." In 5 days JureStern will be re-followed.' %>
-      <%= content_tag :h3, 'Note:' %>
-      <%= content_tag :p, 'It may take up to 10 minutes for your automated DogHouse insertion request to be processed.' %>
-    <% end %>
+    <%= content_tag :p, "#{content_tag :code, 'tweet message'} = optional tweet to send to the user telling them that you've put them in your DogHouse".html_safe %>
+    <%= content_tag :span, '* You have to sign in once before you can use it.', class: 'label pull-right' %>
+  <% end %>
+  <%= content_tag :div, class: 'span6' do %>
+    <%= content_tag :h3, 'Example:' %>
+    <%= content_tag :p, "@TwitDoghouse JureStern 5d You're going in my doghouse because you are yapping too much." %>
+    <%= content_tag :h3, 'Result:' %>
+    <%= content_tag :p, 'The user JureStern will be unfollowed and the following tweet will be sent from your Twitter account: "@JureStern You\'re going in my doghouse because you are yapping too much." In 5 days JureStern will be re-followed.' %>
+    <%= content_tag :h3, 'Note:' %>
+    <%= content_tag :p, 'It may take up to 10 minutes for your automated DogHouse insertion request to be processed.' %>
   <% end %>
 <% end %>

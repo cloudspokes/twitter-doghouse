@@ -6,7 +6,7 @@
       <%= content_tag :div, class: 'nav-collapse' do %>
         <%= content_tag :ul, class: 'nav pull-right' do %>
           <%= content_tag :li, link_to('How does it work', root_url) unless controller_name == 'home' %>
-          <%= content_tag :li, link_to('Go to app', app_path) if controller_name == 'home' and @current_user %>
+          <%= content_tag :li, link_to('Go to the app', app_path) if controller_name == 'home' and @current_user %>
           <% if @current_user %>
             <%= content_tag :li, nil, class: 'divider-vertical' %>
             <%= content_tag :li, link_to("#{image_tag @current_user.image, width: '18', class: 'navbar-image'} #{@current_user.name}".html_safe, "http://www.twitter.com/#{@current_user.nickname}", target: '_blank') %>
