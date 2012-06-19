@@ -20,7 +20,7 @@
               <% end %>
               <%= content_tag :td, content_tag(:span, doghouse.created_at.to_time.to_i, class: 'utc-date-time'), class: 'hide-phone' %>
               <%= content_tag :td, nil, class: 'countdown', data: {until_time: doghouse.release_date_time.to_time.to_i} %>
-              <%= content_tag :td, doghouse.exit_tweet.present? ? link_to('View', '#', rel: 'popover', data: {content: doghouse.exit_tweet_full, placement: 'top'}, class: 'exit-tweet-link') : 'None' %>
+              <%= content_tag :td, doghouse.exit_tweet.present? ? link_to('View', '#', data: {title: doghouse.exit_tweet_full}, class: 'exit-tweet-link') : 'None' %>
               <%= content_tag :td do %>
                 <%= content_tag :div, class: 'btn-group' do %>
                   <%= link_to 'Edit', "#doghouse#{doghouse.id}", data: {toggle: 'modal'}, class: 'btn' %>

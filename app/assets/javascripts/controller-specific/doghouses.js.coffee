@@ -75,9 +75,9 @@ window.dialog_initializers = ->
   $('form.dialog-form').live "ajax:beforeSend", (event,xhr,status) ->
     $('.doghouse-dialog').modal 'hide'
 
-# Enable twitter bootstrap popover for view doghouse exit tweet
-window.initialize_popovers = ->
-  $('a.exit-tweet-link').popover()
+# Enable twitter bootstrap tooltip for view doghouse exit tweet
+window.initialize_tooltips = ->
+  $('a.exit-tweet-link').tooltip()
   $('a.exit-tweet-link').on 'click', (event) ->
     event.preventDefault()
 
@@ -136,7 +136,7 @@ $ ->
   # Other initializations
   set_countdowns()
   dialog_initializers()
-  initialize_popovers()
+  initialize_tooltips()
   
   # Fill the screen name select box with people the user follows on twitter
   # Originally fetched this information in the controller but is was causing slow page load times.
