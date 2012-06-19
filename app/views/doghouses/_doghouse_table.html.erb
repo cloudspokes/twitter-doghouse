@@ -4,7 +4,7 @@
       <%= content_tag :table, class: 'table table-striped doghouse-table' do %>
         <%= content_tag :thead do %>
           <%= content_tag :th, 'Twitter Username', class: 'twitter-username-column' %>
-          <%= content_tag :th, 'Created', class: 'created-on-column' %>
+          <%= content_tag :th, 'Created', class: 'created-on-column hide-phone' %>
           <%= content_tag :th, 'Expires' %>
           <%= content_tag :th, 'Release Tweet' %>
           <%= content_tag :th, '' %>
@@ -18,7 +18,7 @@
                   <%= content_tag :span, doghouse.screen_name %>
                 <% end %>
               <% end %>
-              <%= content_tag :td, content_tag(:span, doghouse.created_at.to_time.to_i, class: 'utc-date-time') %>
+              <%= content_tag :td, content_tag(:span, doghouse.created_at.to_time.to_i, class: 'utc-date-time'), class: 'hide-phone' %>
               <%= content_tag :td, nil, class: 'countdown', data: {until_time: doghouse.release_date_time.to_time.to_i} %>
               <%= content_tag :td, doghouse.exit_tweet.present? ? link_to('View', '#', rel: 'popover', data: {content: doghouse.exit_tweet_full, placement: 'top'}, class: 'exit-tweet-link') : 'None' %>
               <%= content_tag :td do %>

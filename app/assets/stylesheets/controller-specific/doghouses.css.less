@@ -32,15 +32,10 @@
       font-size: 12px;
     }
   }
-  
-  #enter_tweet_preview_text,
-  #exit_tweet_preview_text {
-    float: left;
-  }
 }
 
 .tweet_hint {
-  text-align: right;
+  text-align: left;
   margin-right: 34px;
   margin-top: 5px;
 }
@@ -70,45 +65,80 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .navbar {
     margin-left: -20px;
     margin-right: -20px;
+  }
+  #new_doghouse {
+    
+    .span6 {
+      width: 100%;
+    }
+    .tweet-preview {
+      width: 60%;
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  
+  #new_doghouse {
+
+    .tweet-preview {
+      width: 80%;
+    }
   }
 }
 
 @media (max-width: 480px) {
   
-  .tweet-preview {
+   #new_doghouse {
+    .tweet-preview {
+      width: 90%;
     
-    .tweet-preview-header {
-      width: 70%;
-    }
-    #enter_tweet_preview_text, 
-    #exit_tweet_preview_text {
-    float: none;
+      .tweet-preview-header {
+        width: 79%;
+      }
     }
   }
   
   .tweet-preview-form {
     
     .control-group {
-      margin-bottom: 0;
+      margin-bottom: 10px;
     }
   }
   
   .doghouse-table {
-
+    
+    th {
+      font-size: 11px;
+      line-height: 13px;
+    }
     .twitter-image-name {
-      width: 50px;
-      padding: 3px;
-      border: 3px solid white;
+      width: auto;
+      padding: 0;
+      border: none;
+      background: none;
+      .box-shadow(0 0 0);
     }
     .twitter-username-column {
       width: 70px;
     }
     .created-on-column {
       width: 50px;
+    }
+    .hide-phone {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  #new_doghouse {
+    .tweet-preview {
+      width: 90%;
     }
   }
 }
