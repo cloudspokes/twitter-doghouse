@@ -79,14 +79,22 @@ class Doghouse < ActiveRecord::Base
     
     # Tell Twitter to send the user's enter doghouse tweet if one exits
     def self.send_enter_tweet!(doghouse_id)
-      doghouse = Doghouse.get_doghouse_and_authenticate doghouse_id
-      Twitter.update("@#{doghouse.screen_name} #{doghouse.enter_tweet}") if doghouse.enter_tweet.present?
+      begin
+        doghouse = Doghouse.get_doghouse_and_authenticate doghouse_id
+        Twitter.update("@#{doghouse.screen_name} #{doghouse.enter_tweet}") if doghouse.enter_tweet.present?
+      rescue Exception
+        logger.info 'Error sending enter tweet'
+      end
     end
     
     # Tell Twitter to send the user's exit doghouse tweet if one exits
     def self.send_exit_tweet!(doghouse_id)
-      doghouse = Doghouse.get_doghouse_and_authenticate doghouse_id
-      Twitter.update("@#{doghouse.screen_name} #{doghouse.exit_tweet}") if doghouse.exit_tweet.present?
+      begin
+        doghouse = Doghouse.get_doghouse_and_authenticate doghouse_id
+        Twitter.update("@#{doghouse.screen_name} #{doghouse.exit_tweet}") if doghouse.exit_tweet.present?
+      rescue
+        logger.info 'Error sending exit tweet'
+      end
     end
     
     # Release a doghouse entry (refollow the user, send exit tweet, set doghouse entry to 'released'
