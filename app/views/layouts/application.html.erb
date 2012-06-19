@@ -12,6 +12,7 @@
     <%= content_tag :meta, nil, 'http-equiv' => 'X-UA-Compatible', content: 'chrome=1' %>
     <%# <meta name="apple-mobile-web-app-capable" content="yes" /> %>
     <%= content_tag :meta, nil, name: 'viewport', content: 'width=device-width, initial-scale=1.0' %>
+    <%= render partial: 'layouts/ios_orientation_fix' %>
   <% end %>
   <%= content_tag :body do %>
     <%= render 'layouts/navbar' %>  
