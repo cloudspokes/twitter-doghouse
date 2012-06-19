@@ -15,7 +15,7 @@
       <%= content_tag :h1, 'Twitter DogHouse' %>
       <%= content_tag :p, "Social networking with Twitter is great except when the people you follow pollute your feed with sponsored spam, political flamewars, and live-tweets of some show or event you don't care about. With this app you can #{content_tag :strong, 'unfollow'} them, tell them they are being annoying, and #{content_tag :strong, 're-follow them after a specified amount of time.'}".html_safe %>
       <%= content_tag :p, class: 'social-links' do %>
-         <%= link_to content_tag(:i, ' Follow @TwitDoghouse', class: 'icon-twitter'), 'https://twitter.com/TwitDoghouse', target: '_blank', class: 'label' %>
+         <%= link_to content_tag(:i, ' Follow @TwitDoghouse', class: 'icon-twitter'), "#{TWITTER_ROOT}/TwitDoghouse", target: '_blank', class: 'label' %>
       <% end %>
     <% end %>
   <% end %>

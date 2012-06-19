@@ -14,7 +14,7 @@
             <%= content_tag :tr do %>
               <%= content_tag :td do %>
                 <% content_tag :div, class: 'twitter-image-name' do %>
-                  <%= image_tag doghouse.profile_image, class: 'twitter-image' %><br />
+                  <%= link_to image_tag(doghouse.profile_image, class: 'twitter-image'), "#{TWITTER_ROOT}/#{doghouse.screen_name}", target: '_blank' %><br />
                   <%= content_tag :span, doghouse.screen_name %>
                 <% end %>
               <% end %>
