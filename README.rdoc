@@ -10,6 +10,7 @@ Social networking with Twitter is great except when the people you follow pollut
 - Select user to add to your DogHouse
 - Set optional insert and release from DogHouse tweets to be sent to the Tweeter you are punishing
 - View and edit duration and release tweet for all users currently in the DogHouse
+- Live dynamic countdown for users currently in the DogHouse
 - Send special Tweet to @TwitDoghouse to have us put users in your DogHouse AUTOMATICALLY
 - Fully responsive. Looks great on mobile devices
 - Killer logo!
