@@ -34,4 +34,7 @@ TwitterDoghouse::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+  TWITTER_KEY = 'key'
+  TWITTER_SECRET = 'secret'
 end

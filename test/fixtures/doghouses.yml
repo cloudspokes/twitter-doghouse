@@ -3,11 +3,11 @@
 one:
   user_id: 1
   screen_name: MyString
-  release_date_time: 2012-06-10 20:46:27
+  duration_minutes: 10
   is_released: false
 
 two:
   user_id: 1
   screen_name: MyString
-  release_date_time: 2012-06-10 20:46:27
+  duration_minutes: 10
   is_released: false

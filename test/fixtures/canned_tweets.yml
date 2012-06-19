@@ -3,9 +3,9 @@
 one:
   description: MyString
   text: MyString
-  type: 
+  tweet_type: 
 
 two:
   description: MyString
   text: MyString
-  type: 
+  tweet_type: 

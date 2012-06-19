@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  from_user: MyString
+  user_id: 1
   tweet_id: MyString
   text: MyString
 
 two:
-  from_user: MyString
+  user_id: 2
   tweet_id: MyString
   text: MyString
