@@ -15,9 +15,13 @@
   padding: 40px 60px 30px 60px;
   position: relative;
   
-  h1,
-  p {
-    margin-bottom: 20px;
+  .hero-unitContainer {
+    width: 80%;
+    
+    h1,
+    p {
+      margin-bottom: 20px;
+    }
   }
   
   .cloudspokelink {
@@ -51,6 +55,14 @@
     line-height: 45px;
     font-weight: 300;
     text-align: center;
+  }
+}
+@media (min-width: 1200px) {
+  
+  .hero-unit {
+    .hero-unitContainer {
+      width: 100%;
+    }
   }
 }
 
