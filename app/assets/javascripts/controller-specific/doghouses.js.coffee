@@ -3,6 +3,7 @@ tweet_pre_length = 0
 dialog_tweet_pre_length = 0
 MAX_TWEET_CHARS = 140
 MAX_SCREEN_NAMES_PER_QUERY = 100 # Enforced by twitter API
+MAX_SCREEN_NAMES_TO_PULL = 1000
 
 # Appropriately show or hide the textarea for custom enter and exit tweets
 hide_or_show_custom_tweets = ->
@@ -141,10 +142,11 @@ $ ->
   # Fill the screen name select box with people the user follows on twitter
   # Originally fetched this information in the controller but is was causing slow page load times.
     # This is a much cleaner solution.
+  # Only pull max 1000 otherwise we'll quickly hit twitter limit
   current_user_span = $('#current_user')
   jQuery.getJSON current_user_span.attr('data-get-following-ids-path'), {user_id: current_user_span.attr('data-id')}, (following_ids) ->
     index = 0
-    while index < following_ids.length
+    while index < Math.min(following_ids.length, MAX_SCREEN_NAMES_TO_PULL)
       jQuery.getJSON current_user_span.attr('data-get-screen-names-path'), {ids: following_ids[index...(index+MAX_SCREEN_NAMES_PER_QUERY)]}, (screen_names) ->
         put_screen_names_in_select screen_names
       index += MAX_SCREEN_NAMES_PER_QUERY
