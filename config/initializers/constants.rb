@@ -7,3 +7,4 @@ TEXT_AREA_ROWS = 4
 DOGHOUSES_PER_PAGE = 5
 BITLY_LINK = 'http://bit.ly/LcFVjZ'
 TWITTER_ROOT = 'https://twitter.com'
+CLOUDSPOKES_CHALLENGE_LINK = 'http://www.cloudspokes.com/challenges/1540'
