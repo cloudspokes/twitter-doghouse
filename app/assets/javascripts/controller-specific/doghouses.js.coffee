@@ -4,6 +4,7 @@ dialog_tweet_pre_length = 0
 MAX_TWEET_CHARS = 140
 MAX_SCREEN_NAMES_PER_QUERY = 100 # Enforced by twitter API
 MAX_SCREEN_NAMES_TO_PULL = 1000
+BITLY_LINK = ""
 
 # Appropriately show or hide the textarea for custom enter and exit tweets
 hide_or_show_custom_tweets = ->
@@ -29,10 +30,10 @@ set_preview = (type) ->
   if screen_name and canned_id_val != 'none'
     if canned_id_val == 'custom'
       $("##{type}_tweet_preview").show()
-      $("##{type}_tweet_preview_text").text "@#{screen_name} #{$("#doghouse_#{type}_tweet").val()}"
+      $("##{type}_tweet_preview_text").text "@#{screen_name} #{$("#doghouse_#{type}_tweet").val()} #{BITLY_LINK}"
     else
       $("##{type}_tweet_preview").show()
-      $("##{type}_tweet_preview_text").text "@#{screen_name} #{$('option:selected', "#doghouse_canned_#{type}_tweet_id").attr('data-text')}"
+      $("##{type}_tweet_preview_text").text "@#{screen_name} #{$('option:selected', "#doghouse_canned_#{type}_tweet_id").attr('data-text')} #{BITLY_LINK}"
   else
     $("##{type}_tweet_preview").hide()
 
@@ -98,7 +99,7 @@ $ ->
   # Callback when user to put in doghouse changes
   $('#doghouse_screen_name').on 'change', ->
     # Calculate number of characters remaining for tweet, show the tweet hint and set maxlength for the textfield
-    tweet_pre_length = $('#doghouse_screen_name').val().length + 2 # '@' sign and space after the screen_name
+    tweet_pre_length = $('#doghouse_screen_name').val().length + 2 + BITLY_LINK.length + 1 # '@' sign and space after the screen_name, the bitly link and the space before it
     chars_remaining = MAX_TWEET_CHARS - tweet_pre_length
     chars_remaining_text = "#{chars_remaining} #{chars_remaining_suffix}"
     $('.tweet_hint').text chars_remaining_text
@@ -150,5 +151,7 @@ $ ->
       jQuery.getJSON current_user_span.attr('data-get-screen-names-path'), {ids: following_ids[index...(index+MAX_SCREEN_NAMES_PER_QUERY)]}, (screen_names) ->
         put_screen_names_in_select screen_names
       index += MAX_SCREEN_NAMES_PER_QUERY
+  
+  BITLY_LINK = current_user_span.attr('data-bitly-link')
   
   

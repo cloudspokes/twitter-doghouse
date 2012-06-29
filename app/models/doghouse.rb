@@ -38,7 +38,7 @@ class Doghouse < ActiveRecord::Base
   
   # Full text for exit tweet including '@...'
   def exit_tweet_full
-    "@#{screen_name} #{exit_tweet}"
+    tweet_full exit_tweet
   end
   
   # Returns a hash representing how long until the doghouse entry will be released.
@@ -56,7 +56,17 @@ class Doghouse < ActiveRecord::Base
     }
   end
   
+  # Full text for enter tweet
+  def enter_tweet_full
+    tweet_full enter_tweet
+  end
+  
   private
+    
+    # Full text for tweet include '@...' and bitly link
+    def tweet_full(tweet)
+      "@#{screen_name} #{tweet} #{BITLY_LINK}"
+    end
   
     # Actions to perform when a doghouse entry is created
     def enter_doghouse_actions
@@ -81,7 +91,7 @@ class Doghouse < ActiveRecord::Base
     def self.send_enter_tweet!(doghouse_id)
       begin
         doghouse = Doghouse.get_doghouse_and_authenticate doghouse_id
-        Twitter.update("@#{doghouse.screen_name} #{doghouse.enter_tweet}") if doghouse.enter_tweet.present?
+        Twitter.update(doghouse.enter_tweet_full) if doghouse.enter_tweet.present?
       rescue Exception
         logger.info 'Error sending enter tweet'
       end
@@ -91,7 +101,7 @@ class Doghouse < ActiveRecord::Base
     def self.send_exit_tweet!(doghouse_id)
       begin
         doghouse = Doghouse.get_doghouse_and_authenticate doghouse_id
-        Twitter.update("@#{doghouse.screen_name} #{doghouse.exit_tweet}") if doghouse.exit_tweet.present?
+        Twitter.update(doghouse.exit_tweet_full) if doghouse.exit_tweet.present?
       rescue
         logger.info 'Error sending exit tweet'
       end
