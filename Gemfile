@@ -16,6 +16,7 @@ gem "delayed_job_active_record", "~> 0.3.2"
 gem "hirefireapp", "~> 0.0.8"
 gem "kaminari", "~> 0.13.0"
 gem "exception_notification", "~> 2.6.1"
+gem "haml"
 
 group :development do
   gem 'sqlite3'

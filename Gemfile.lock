@@ -52,6 +52,7 @@ GEM
       multi_json (~> 1.0)
     faraday (0.8.1)
       multipart-post (~> 1.1)
+    haml (3.1.6)
     hashie (1.2.0)
     hike (1.2.1)
     hirefireapp (0.0.8)
@@ -163,6 +164,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   delayed_job_active_record (~> 0.3.2)
   exception_notification (~> 2.6.1)
+  haml
   hirefireapp (~> 0.0.8)
   jquery-rails
   kaminari (~> 0.13.0)
