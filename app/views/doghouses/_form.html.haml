@@ -1,0 +1,13 @@
+.row
+  .span12
+    = simple_form_for(@new_doghouse, html: {class: 'form-horizontal'}, remote: true) do |f|
+      %fieldset
+        %legend
+          Add a person to your DogHouse
+          = link_to content_tag(:small, ' Your DogHouse', class: 'icon-circle-arrow-down pull-right'), '#go_to_doghouse'
+        = f.input :screen_name, collection: [], allow_blank: false, label: 'Twitter Username'
+        = f.input :duration_minutes, label: 'For How Long?', input_html: {min: '1'}
+        = f.input :duration_minutes_multiplier, collection: duration_minutes_multiplier_collection, label: false, include_blank: false, as: :radio_buttons
+        = render partial: 'tweet_row', locals: {type: CannedTweet::ENTER_TYPE, f: f, label: 'Tweet to send when inserting in DogHouse'}
+        = render partial: 'tweet_row', locals: {type: CannedTweet::EXIT_TYPE, f: f, label: 'Tweet to send when releasing from DogHouse'}
+      = f.button :submit, 'Add to DogHouse', id: 'create_doghouse_submit'

@@ -1,4 +1,0 @@
-<%= render(partial: 'doghouse_table') %>
-<% for doghouse in @active_doghouses %>
-  <%= content_tag :div, render(partial: 'dialog', locals: { doghouse: doghouse }), class: 'modal hide fade in doghouse-dialog', id: "doghouse#{doghouse.id}", data: {tweet_pre_length: doghouse.screen_name.length + 2 + BITLY_LINK.length + 1} %>
-<% end %>

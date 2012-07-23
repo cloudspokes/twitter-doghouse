@@ -1,0 +1,16 @@
+%nav.navbar
+  .navbar-inner
+    .container
+      = link_to "#{image_tag('logo.png')} Twitter DogHouse".html_safe, root_url, class: "brand"
+      %a.btn.btn-navbar{data: {toggle: 'collapse', target: '.nav-collapse'}} #{content_tag(:span, nil, class: 'icon-bar') * 3}
+      .nav-collapse
+        %ul.nav.pull-right
+          %li= link_to('How does it work', root_url) unless controller_name == 'home'
+          %li= link_to('Go to the app', app_path) if controller_name == 'home' and @current_user
+          %li.divider-vertical/
+          - if @current_user
+            %li
+              %span #{image_tag @current_user.image, width: '18', class: 'navbar-image'} #{@current_user.name}
+            %li= link_to("#{content_tag :i, nil, class: 'icon-signout'} Log Out".html_safe, signout_path)
+          - else
+            %li= link_to("Sign in with Twitter", "/auth/twitter")

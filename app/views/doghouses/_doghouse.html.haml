@@ -1,0 +1,3 @@
+= render(partial: 'doghouse_table')
+- for doghouse in @active_doghouses
+  .modal.hide.fade.in.doghouse-dialog{id: "doghouse#{doghouse.id}", data: {:'tweet-pre-length' => doghouse.screen_name.length + 2 + BITLY_LINK.length + 1}}= render(partial: 'dialog', locals: { doghouse: doghouse })

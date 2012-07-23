@@ -1,0 +1,4 @@
+= content_tag :span, nil, id: 'current_user', data: {id: @current_user.id, get_following_ids_path: get_following_ids_path, get_screen_names_path: get_screen_names_path, bitly_link: BITLY_LINK}
+= render 'form'
+%h2#go_to_doghouse Your DogHouse
+#doghouse= render(partial: 'doghouse')

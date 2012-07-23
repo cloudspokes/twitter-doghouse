@@ -1,0 +1,15 @@
+= simple_form_for(doghouse, html: {class: 'form-horizontal dialog-form'}, remote: true) do |f|
+  .modal-header
+    %a.close{data: {dismiss: 'modal'}} &times;
+    %h3 Edit DogHouse Entry
+  .modal-body
+    %fieldset
+      %legend Expires In
+      - expiry = doghouse.get_expiry
+      = f.input :expires_in_days, label: 'Days', input_html: {value: expiry[:days]}
+      = f.input :expires_in_hours, label: 'Hours', input_html: {value: expiry[:hours]}
+      = f.input :expires_in_minutes, label: 'Minutes', input_html: {value: expiry[:minutes]}
+    %fieldset
+      %legend Release Tweet
+      = f.input :exit_tweet, hint: '', hint_html: {class: 'tweet_hint', style: 'text-align:left;'}, input_html: {class: 'dialog_tweet_text input-xlarge', rows: TEXT_AREA_ROWS}, as: :text, label: 'Tweet to send when releasing from DogHouse'
+  .modal-footer= f.submit('Save Changes', class: 'btn btn-primary')

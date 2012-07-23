@@ -1,0 +1,31 @@
+.row
+  .span12
+    - if @active_doghouses.any?
+      %table.table.table-striped.doghouse-table
+        %thead
+          %th.twitter-username-column Twitter Username
+          %th.created-on-column.hide-phone Created
+          %th Expires
+          %th Release Tweet
+          %th/
+        %tbody
+          - for doghouse in @active_doghouses
+            %tr
+              %td
+                .twitter-image-name
+                  = link_to image_tag(doghouse.profile_image, class: 'twitter-image'), "#{TWITTER_ROOT}/#{doghouse.screen_name}", target: '_blank'
+                  <br />
+                  %span= doghouse.screen_name
+              %td.hide-phone= content_tag(:span, doghouse.created_at.to_time.to_i, class: 'utc-date-time')
+              %td.countdown{data: {:'until-time' => doghouse.release_date_time.to_time.to_i}}/
+              %td= doghouse.exit_tweet.present? ? link_to('View', '#', data: {title: doghouse.exit_tweet_full}, class: 'exit-tweet-link') : 'None'
+              %td
+                .btn-group
+                  = link_to 'Edit', "#doghouse#{doghouse.id}", data: {toggle: 'modal'}, class: 'btn'
+                  %a.btn.dropdown-toggle{data: {toggle: 'dropdown'}}= content_tag(:span, nil, class: 'caret')
+                  %ul.dropdown-menu
+                    %li= link_to("Release from DogHouse", release_doghouse_path(doghouse), method: :post, remote: true)
+                    %li= link_to("Remove and leave unfollowed", doghouse, method: :delete, remote: true)
+      = paginate @active_doghouses
+    - else
+      .well There are currently no people in your DogHouse.

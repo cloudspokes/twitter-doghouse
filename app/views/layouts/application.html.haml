@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+%html
+  %head
+    = content_tag :title, @title || 'twitter-doghouse'
+    = stylesheet_link_tag 'application'
+    = stylesheet_link_tag "controller-specific/#{controller_name}.css" if TwitterDoghouse::Application.assets.find_asset("controller-specific/#{controller_name}.css")
+    = javascript_include_tag :application
+    = javascript_include_tag "controller-specific/#{controller_name}.js" if TwitterDoghouse::Application.assets.find_asset("controller-specific/#{controller_name}.js")
+    = csrf_meta_tag
+    = render partial: 'layouts/favicons'
+    = yield(:head)
+    = content_tag :meta, nil, 'http-equiv' => 'X-UA-Compatible', content: 'chrome=1'
+    = content_tag :meta, nil, name: 'viewport', content: 'width=device-width, initial-scale=1.0'
+    = render partial: 'layouts/ios_orientation_fix'
+  %body
+    = render 'layouts/navbar'
+    .container
+      - flash.each do |name, msg|
+        - unless msg.blank?
+          - if name.eql? :notice
+            - type = 'alert-success'
+          - else
+            - type = 'alert-error'
+          %div{class: "alert #{type} fade in"} #{content_tag(:a, "&times;".html_safe, class: 'close', data: {dismiss: 'alert'})}#{msg}
+      .row
+        .span12= content_tag(:div, yield, class: "tab-content main_area single_column")
+      = render 'layouts/footer'
+    = debug(params) if Rails.env.development?
+    = render partial: 'layouts/google_analytics'
