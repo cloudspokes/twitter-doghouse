@@ -1,0 +1,14 @@
+.row
+  .span6.tweet-preview-form
+    = f.input "canned_#{type}_tweet_id", include_blank: false, label: label do
+      = f.select "canned_#{type}_tweet_id", canned_tweets_collection(type == CannedTweet::ENTER_TYPE ? @canned_enter_tweets : @canned_exit_tweets), {}, class: 'canned-tweet-id'
+    = f.input "#{type}_tweet", hint: '', hint_html: {class: 'tweet_hint'}, input_html: {class: 'tweet_text input-xlarge', rows: TEXT_AREA_ROWS}, as: :text, label: false
+  .span6.tweet-preview-form
+    %div{id: "#{type}_tweet_preview"}
+      %h3= content_tag(:small, "#{type == CannedTweet::ENTER_TYPE ? 'Insert' : 'Release'} Tweet Preview")
+      .tweet-preview
+        = image_tag @current_user.image, class: 'twitter-image'
+        .tweet-preview-header
+          %span.username= @current_user.name
+          %span.nickname @#{@current_user.nickname}
+        %div{id: "#{type}_tweet_preview_text"}
